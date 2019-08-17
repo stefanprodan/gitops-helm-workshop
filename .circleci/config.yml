@@ -33,6 +33,7 @@ jobs:
               git config user.name stefanprodan
               git remote set-url origin ${REPOSITORY}
               git checkout gh-pages
+              rm -rf assets
               rsync -avzh $HOME/site/ .
               git add .
               git commit -m "Publish docs"

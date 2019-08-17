@@ -18,15 +18,26 @@ and clone it locally (replace the `GHUSER` value with your GitHub username):
 
 ```sh
 export GHUSER=stefanprodan
-git clone https://github.com/${GHUSER}/gitops-workshop
-cd gitops-workshop
+git clone https://github.com/${GHUSER}/gitops-helm-workshop
 ```
 
 Set your GitHub username and email:
 
 ```sh
-git config user.name "GHUSER"
+cd gitops-helm-workshop
+git config user.name "${GHUSER}"
 git config user.email "your@main.address"
+```
+
+Cluster state structure:
+
+```
+├── cluster
+    ├── canaries
+    ├── charts
+    │   └── podinfo
+    ├── namespaces
+    └── releases
 ```
 
 ## Flux
