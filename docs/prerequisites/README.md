@@ -1,3 +1,7 @@
+---
+title: Prerequisites
+---
+
 # Prerequisites
 
 In order ot install the workshop prerequisites you'll need a Kubernetes cluster **1.13**
