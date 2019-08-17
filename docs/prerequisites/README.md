@@ -13,7 +13,7 @@ Make sure you have the following tools installed locally:
 
 ## Git
 
-Fork the [gitops-workshop](https://github.com/stefanprodan/gitops-workshop) repository
+Fork the [workshop](https://github.com/stefanprodan/gitops-helm-workshop) repository
 and clone it locally (replace the `GHUSER` value with your GitHub username):
 
 ```sh
