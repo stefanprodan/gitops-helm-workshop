@@ -1,48 +1,5 @@
-version: 2.1
+version: 2
 jobs:
-  push-docs:
-    docker:
-      - image: circleci/node
-    steps:
-      - checkout
-      - restore_cache:
-          name: Restore Yarn Package Cache
-          keys:
-            - yarn-packages-{{ checksum "yarn.lock" }}
-      - run:
-          name: Install Dependencies
-          command: yarn install --frozen-lockfile
-      - save_cache:
-          name: Save Yarn Package Cache
-          key: yarn-packages-{{ checksum "yarn.lock" }}
-          paths:
-            - ~/.cache/yarn
-      - run:
-          name: Publish docs
-          command: |
-            yarn docs:build
-            mkdir $HOME/dist
-            rsync -avzh docs/.vuepress/dist $HOME/dist
-      - run:
-          name: Publish docs
-          command: |
-            if [[ $GITHUB_TOKEN ]]; then
-              REPOSITORY="https://stefanprodan:${GITHUB_TOKEN}@github.com/stefanprodan/gitops-helm-workshop.git"
-              git config user.email stefanprodan@users.noreply.github.com
-              git config user.name stefanprodan
-              git remote set-url origin ${REPOSITORY}
-              git checkout gh-pages
-              rsync -avzh $HOME/dist .
-              git add .
-              git commit -m "Publish docs"
-              git push origin gh-pages
-            else
-              echo "No GitHub token found! Skip publishing"
-            fi
-
-workflows:
-  version: 2
-  build-test-push:
-    jobs:
-      - push-container
-
+  build:
+    branches:
+      ignore: gh-pages
