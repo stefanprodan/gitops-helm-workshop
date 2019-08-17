@@ -53,7 +53,7 @@ Apply changes:
 
 ```sh
 git add . && \
-git commit -m "update podinfo" && \
+git commit -m "install ingress" && \
 git push origin master && \
 fluxctl sync
 ```
@@ -72,7 +72,8 @@ kubectl -n ingress-nginx get svc
 
 ## Install podinfo
 
-You'll be installing podinfo using a chart stored in git.
+[Podinfo](http://github.com/stefanprodan/podinfo) is tiny Go web application.
+You'll be installing podinfo using a Helm chart stored in the git repository at `charts/podinfo`.
 
 Create the `prod` namespace with linkerd injection enabled:
 
@@ -126,7 +127,7 @@ Apply changes:
 
 ```sh
 git add . && \
-git commit -m "update podinfo" && \
+git commit -m "install podinfo" && \
 git push origin master && \
 fluxctl sync
 ```
@@ -138,6 +139,8 @@ kubectl -n prod get hr
 ```
 
 Open your browser and navigate to `http://<LB-IP>/`, you should see podinfo v2.1.0 UI.
+
+![v2.1.0](/podinfo-2.1.0.png)
 
 ## Automated upgrade
 
@@ -175,4 +178,12 @@ Validate that the Helm operator has upgraded podinfo:
 kubectl -n prod get hr
 ```
 
-Open your browser and navigate to `http://<LB-IP>/`, you should see podinfo v2.1.5 UI.
+Pull the changes made by Flux locally:
+
+```sh
+git pull origin master
+```
+
+Open your browser and navigate to `http://<LB-IP>/`, you should see podinfo v2.1.3 UI.
+
+![v2.1.3](/podinfo-2.1.3.png)
