@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Canary Releases | GitOps Workshop</title>
+    <meta name="description" content="Progressive Delivery for Kubernetes with Flux, Helm, Linkerd and Flagger">
+    
+    
+    <link rel="preload" href="/assets/css/0.styles.a0ada997.css" as="style"><link rel="preload" href="/assets/js/app.60b9b199.js" as="script"><link rel="preload" href="/assets/js/2.795534d9.js" as="script"><link rel="preload" href="/assets/js/6.b89e3347.js" as="script"><link rel="prefetch" href="/assets/js/10.09ba8240.js"><link rel="prefetch" href="/assets/js/11.d53eb7de.js"><link rel="prefetch" href="/assets/js/3.0c89a451.js"><link rel="prefetch" href="/assets/js/4.e2e0255b.js"><link rel="prefetch" href="/assets/js/5.653dd45a.js"><link rel="prefetch" href="/assets/js/7.226834e3.js"><link rel="prefetch" href="/assets/js/8.acafec1a.js"><link rel="prefetch" href="/assets/js/9.c5136c36.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.a0ada997.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">GitOps Workshop</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">Home</a></div><div class="nav-item"><a href="https://github.com/fluxcd/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  FluxCD
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="nav-item"><a href="ttps://github.com/weaveworks/flagger" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Flagger
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">Home</a></div><div class="nav-item"><a href="https://github.com/fluxcd/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  FluxCD
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="nav-item"><a href="ttps://github.com/weaveworks/flagger" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Flagger
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/" class="sidebar-link">Home</a></li><li><a href="/intro/" class="sidebar-link">Introduction</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/intro/#what-is-gitops" class="sidebar-link">What is GitOps?</a></li><li class="sidebar-sub-header"><a href="/intro/#what-is-progressive-delivery" class="sidebar-link">What is Progressive Delivery?</a></li></ul></li><li><a href="/prerequisites/" class="sidebar-link">Prerequisites</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/prerequisites/#git" class="sidebar-link">Git</a></li><li class="sidebar-sub-header"><a href="/prerequisites/#flux" class="sidebar-link">Flux</a></li><li class="sidebar-sub-header"><a href="/prerequisites/#helm-operator" class="sidebar-link">Helm Operator</a></li><li class="sidebar-sub-header"><a href="/prerequisites/#linkerd" class="sidebar-link">Linkerd</a></li><li class="sidebar-sub-header"><a href="/prerequisites/#flagger" class="sidebar-link">Flagger</a></li></ul></li><li><a href="/helm/" class="sidebar-link">Helm Releases</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/helm/#install-nginx" class="sidebar-link">Install NGINX</a></li><li class="sidebar-sub-header"><a href="/helm/#install-podinfo" class="sidebar-link">Install podinfo</a></li><li class="sidebar-sub-header"><a href="/helm/#automated-upgrade" class="sidebar-link">Automated upgrade</a></li></ul></li><li><a href="/canary/" class="active sidebar-link">Canary Releases</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/canary/#application-bootstrap" class="sidebar-link">Application bootstrap</a></li><li class="sidebar-sub-header"><a href="/canary/#automated-canary-promotion" class="sidebar-link">Automated canary promotion</a></li><li class="sidebar-sub-header"><a href="/canary/#automated-rollback" class="sidebar-link">Automated rollback</a></li></ul></li><li><a href="/test/" class="sidebar-link">Canary Helm Tests</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/test/#create-tests" class="sidebar-link">Create tests</a></li><li class="sidebar-sub-header"><a href="/test/#run-tests" class="sidebar-link">Run tests</a></li></ul></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="canary-releases"><a href="#canary-releases" aria-hidden="true" class="header-anchor">#</a> Canary Releases</h1> <p>A canary release is described with a Kubernetes custom resource named <strong>Canary</strong>.</p> <h2 id="application-bootstrap"><a href="#application-bootstrap" aria-hidden="true" class="header-anchor">#</a> Application bootstrap</h2> <p>Edit the podinfo Helm release and disable the image updates and the ClusterIP service:</p> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> helm.fluxcd.io/v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> HelmRelease
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> podinfo
+  <span class="token key atrule">namespace</span><span class="token punctuation">:</span> prod
+  <span class="token key atrule">annotations</span><span class="token punctuation">:</span>
+    <span class="token key atrule">fluxcd.io/automated</span><span class="token punctuation">:</span> <span class="token string">&quot;false&quot;</span>
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">releaseName</span><span class="token punctuation">:</span> podinfo
+  <span class="token key atrule">values</span><span class="token punctuation">:</span>
+    <span class="token key atrule">image</span><span class="token punctuation">:</span>
+      <span class="token key atrule">repository</span><span class="token punctuation">:</span> stefanprodan/podinfo
+      <span class="token key atrule">tag</span><span class="token punctuation">:</span> 2.1.0
+    <span class="token key atrule">service</span><span class="token punctuation">:</span>
+      <span class="token key atrule">enabled</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
+      <span class="token key atrule">type</span><span class="token punctuation">:</span> ClusterIP
+</code></pre></div><p>Apply changes:</p> <div class="language-sh extra-class"><pre class="language-sh"><code><span class="token function">git</span> <span class="token function">add</span> <span class="token builtin class-name">.</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">\</span>
+<span class="token function">git</span> commit -m <span class="token string">&quot;prep canary&quot;</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">\</span>
+<span class="token function">git</span> push origin master <span class="token operator">&amp;&amp;</span> <span class="token punctuation">\</span>
+fluxctl <span class="token function">sync</span>
+</code></pre></div><p>Create a canary release for podinfo:</p> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> flagger.app/v1alpha3
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Canary
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> podinfo
+  <span class="token key atrule">namespace</span><span class="token punctuation">:</span> prod
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">targetRef</span><span class="token punctuation">:</span>
+    <span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> apps/v1
+    <span class="token key atrule">kind</span><span class="token punctuation">:</span> Deployment
+    <span class="token key atrule">name</span><span class="token punctuation">:</span> podinfo
+  <span class="token key atrule">service</span><span class="token punctuation">:</span>
+    <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">9898</span>
+  <span class="token key atrule">canaryAnalysis</span><span class="token punctuation">:</span>
+    <span class="token key atrule">interval</span><span class="token punctuation">:</span> 10s
+    <span class="token key atrule">stepWeight</span><span class="token punctuation">:</span> <span class="token number">5</span>
+    <span class="token key atrule">threshold</span><span class="token punctuation">:</span> <span class="token number">5</span>
+    <span class="token key atrule">metrics</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> request<span class="token punctuation">-</span>success<span class="token punctuation">-</span>rate
+      <span class="token key atrule">threshold</span><span class="token punctuation">:</span> <span class="token number">99</span>
+      <span class="token key atrule">interval</span><span class="token punctuation">:</span> 1m
+    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> request<span class="token punctuation">-</span>duration
+      <span class="token key atrule">threshold</span><span class="token punctuation">:</span> <span class="token number">500</span>
+      <span class="token key atrule">interval</span><span class="token punctuation">:</span> 1m
+    <span class="token key atrule">webhooks</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> load<span class="token punctuation">-</span>test
+        <span class="token key atrule">url</span><span class="token punctuation">:</span> http<span class="token punctuation">:</span>//load<span class="token punctuation">-</span>tester.prod/
+        <span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+          <span class="token key atrule">cmd</span><span class="token punctuation">:</span> <span class="token string">&quot;hey -z 2m -q 10 -c 2 http://podinfo:9898/&quot;</span>
+</code></pre></div><p>Apply changes:</p> <div class="language-sh extra-class"><pre class="language-sh"><code><span class="token function">git</span> <span class="token function">add</span> <span class="token builtin class-name">.</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">\</span>
+<span class="token function">git</span> commit -m <span class="token string">&quot;add canary&quot;</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">\</span>
+<span class="token function">git</span> push origin master <span class="token operator">&amp;&amp;</span> <span class="token punctuation">\</span>
+fluxctl <span class="token function">sync</span>
+</code></pre></div><p>Validate that Flagger has initialized the canary:</p> <div class="language-sh extra-class"><pre class="language-sh"><code>kubectl -n prod get canary
+</code></pre></div><h2 id="automated-canary-promotion"><a href="#automated-canary-promotion" aria-hidden="true" class="header-anchor">#</a> Automated canary promotion</h2> <p>Install the load testing service to generate traffic during the canary analysis:</p> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> helm.fluxcd.io/v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> HelmRelease
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> load<span class="token punctuation">-</span>tester
+  <span class="token key atrule">namespace</span><span class="token punctuation">:</span> prod
+  <span class="token key atrule">annotations</span><span class="token punctuation">:</span>
+    <span class="token key atrule">fluxcd.io/ignore</span><span class="token punctuation">:</span> <span class="token string">&quot;false&quot;</span>
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">releaseName</span><span class="token punctuation">:</span> load<span class="token punctuation">-</span>tester
+  <span class="token key atrule">chart</span><span class="token punctuation">:</span>
+    <span class="token key atrule">git</span><span class="token punctuation">:</span> https<span class="token punctuation">:</span>//github.com/weaveworks/flagger
+    <span class="token key atrule">ref</span><span class="token punctuation">:</span> 0.18.2
+    <span class="token key atrule">path</span><span class="token punctuation">:</span> charts/loadtester
+  <span class="token key atrule">values</span><span class="token punctuation">:</span>
+    <span class="token key atrule">fullnameOverride</span><span class="token punctuation">:</span> load<span class="token punctuation">-</span>tester
+</code></pre></div><p>When you deploy a new podinfo version, Flagger gradually shifts traffic to the canary,
+and at the same time, measures the requests success rate as well as the average response duration.
+Based on an analysis of these Linkerd provided metrics, a canary deployment is either promoted or rolled back.</p> <p>Trigger a canary deployment by updating the container image:</p> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> helm.fluxcd.io/v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> HelmRelease
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">releaseName</span><span class="token punctuation">:</span> podinfo
+  <span class="token key atrule">values</span><span class="token punctuation">:</span>
+    <span class="token key atrule">image</span><span class="token punctuation">:</span>
+      <span class="token key atrule">tag</span><span class="token punctuation">:</span> 2.1.1
+</code></pre></div><p>Apply changes:</p> <div class="language-sh extra-class"><pre class="language-sh"><code><span class="token function">git</span> <span class="token function">add</span> <span class="token builtin class-name">.</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">\</span>
+<span class="token function">git</span> commit -m <span class="token string">&quot;update podinfo&quot;</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">\</span>
+<span class="token function">git</span> push origin master <span class="token operator">&amp;&amp;</span> <span class="token punctuation">\</span>
+fluxctl <span class="token function">sync</span>
+</code></pre></div><p>When Flagger detects that the deployment revision changed it will start a new rollout.
+You can monitor the traffic shifting with:</p> <div class="language-sh extra-class"><pre class="language-sh"><code><span class="token function">watch</span> kubectl -n prod get canaries
+</code></pre></div><h2 id="automated-rollback"><a href="#automated-rollback" aria-hidden="true" class="header-anchor">#</a> Automated rollback</h2> <p>During the canary analysis you can generate HTTP 500 errors and high latency to test if Flagger pauses and
+rolls back the faulted version.</p> <p>Trigger another canary release:</p> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> helm.fluxcd.io/v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> HelmRelease
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">releaseName</span><span class="token punctuation">:</span> podinfo
+  <span class="token key atrule">values</span><span class="token punctuation">:</span>
+    <span class="token key atrule">image</span><span class="token punctuation">:</span>
+      <span class="token key atrule">tag</span><span class="token punctuation">:</span> 2.1.2
+</code></pre></div><p>Apply changes:</p> <div class="language-sh extra-class"><pre class="language-sh"><code><span class="token function">git</span> <span class="token function">add</span> <span class="token builtin class-name">.</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">\</span>
+<span class="token function">git</span> commit -m <span class="token string">&quot;update podinfo&quot;</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">\</span>
+<span class="token function">git</span> push origin master <span class="token operator">&amp;&amp;</span> <span class="token punctuation">\</span>
+fluxctl <span class="token function">sync</span>
+</code></pre></div><p>Exec into the tester pod and generate HTTP 500 errors:</p> <div class="language-sh extra-class"><pre class="language-sh"><code>kubectl -n prod <span class="token builtin class-name">exec</span> -it <span class="token variable"><span class="token variable">$(</span>kubectl -n prod get pods -o name <span class="token operator">|</span> <span class="token function">grep</span> -m1 load-tester <span class="token operator">|</span> <span class="token function">cut</span> -d<span class="token string">'/'</span> -f <span class="token number">2</span><span class="token variable">)</span></span> <span class="token function">bash</span>
+
+$ hey -z 1m -c <span class="token number">5</span> -q <span class="token number">5</span> http://podinfo-canary:9898/status/500
+$ hey -z 1m -c <span class="token number">5</span> -q <span class="token number">5</span> http://podinfo-canary:9898/delay/1
+</code></pre></div><p>When the number of failed checks reaches the canary analysis threshold, the traffic is routed back to the primary and
+the canary is scaled to zero.</p> <p>Watch Flagger logs with:</p> <div class="language- extra-class"><pre class="language-text"><code>$ kubectl -n linkerd logs deployment/flagger -f | jq .msg
+
+ Starting canary analysis for podinfo.prod
+ Advance podinfo.test canary weight 5
+ Advance podinfo.test canary weight 10
+ Advance podinfo.test canary weight 15
+ Halt podinfo.test advancement success rate 69.17% &lt; 99%
+ Halt podinfo.test advancement success rate 61.39% &lt; 99%
+ Halt podinfo.test advancement success rate 55.06% &lt; 99%
+ Halt podinfo.test advancement request duration 1.20s &gt; 0.5s
+ Halt podinfo.test advancement request duration 1.45s &gt; 0.5s
+ Rolling back podinfo.prod failed checks threshold reached 5
+ Canary failed! Scaling down podinfo.test
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/helm/" class="prev">
+          Helm Releases
+        </a></span> <span class="next"><a href="/test/">
+          Canary Helm Tests
+        </a>
+        →
+      </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.60b9b199.js" defer></script><script src="/assets/js/2.795534d9.js" defer></script><script src="/assets/js/6.b89e3347.js" defer></script>
+  </body>
+</html>
