@@ -1,6 +1,6 @@
 module.exports = {
     title: 'GitOps Workshop',
-    description: 'Progressive Delivery for Kubernetes with Flux, Linkerd and Flagger',
+    description: 'Progressive Delivery for Kubernetes with Flux, Helm, Linkerd and Flagger',
     themeConfig: {
         displayAllHeaders: true,
         nav: [
