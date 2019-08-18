@@ -1,5 +1,8 @@
 ---
 title: GitOps Workshop
+meta:
+  - name: keywords
+    content: gitops kubernetes helm fluxcd linkerd flagger
 home: true
 sidebar: auto
 heroImage: /gitops-workshop.png
