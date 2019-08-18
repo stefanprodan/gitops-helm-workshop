@@ -29,7 +29,7 @@ git config user.name "${GHUSER}"
 git config user.email "your@main.address"
 ```
 
-Cluster state structure:
+Cluster state directory structure:
 
 ```
 ├── cluster

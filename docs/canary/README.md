@@ -10,7 +10,7 @@ A canary release is described with a Kubernetes custom resource named **Canary**
 
 Edit the podinfo Helm release and disable the image updates and the ClusterIP service:
 
-```yaml
+```yaml{7,13,15}
 apiVersion: helm.fluxcd.io/v1
 kind: HelmRelease
 metadata:
@@ -114,7 +114,7 @@ Based on an analysis of these Linkerd provided metrics, a canary deployment is e
 
 Trigger a canary deployment by updating the container image:
 
-```yaml
+```yaml{7}
 apiVersion: helm.fluxcd.io/v1
 kind: HelmRelease
 spec:
@@ -147,7 +147,7 @@ rolls back the faulted version.
 
 Trigger another canary release:
 
-```yaml
+```yaml{7}
 apiVersion: helm.fluxcd.io/v1
 kind: HelmRelease
 spec:

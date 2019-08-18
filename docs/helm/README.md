@@ -73,7 +73,7 @@ kubectl -n ingress-nginx get svc
 ## Install podinfo
 
 [Podinfo](http://github.com/stefanprodan/podinfo) is tiny Go web application.
-You'll be installing podinfo using a Helm chart stored in the git repository at `charts/podinfo`.
+You'll be installing podinfo using a Helm chart stored in the git repository at `cluster/charts/podinfo`.
 
 Create the `prod` namespace with linkerd injection enabled:
 
@@ -151,7 +151,7 @@ update by using glob, regex or semantic version expressions.
 
 Edit the podinfo Helm release and enable Flux automated image updates:
 
-```yaml
+```yaml{5,6}
 apiVersion: helm.fluxcd.io/v1
 kind: HelmRelease
 metadata:

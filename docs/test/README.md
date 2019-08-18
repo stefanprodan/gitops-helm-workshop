@@ -92,7 +92,7 @@ fluxctl sync
 
 Add the helm test as a pre-rollout webhook:
 
-```yaml
+```yaml{9,10,11,12,13,14,15}
 apiVersion: flagger.app/v1alpha3
 kind: Canary
 metadata:

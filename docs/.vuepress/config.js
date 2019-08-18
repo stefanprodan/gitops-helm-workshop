@@ -5,8 +5,7 @@ module.exports = {
         displayAllHeaders: true,
         nav: [
             { text: 'Home', link: '/' },
-            { text: 'FluxCD', link: 'https://github.com/fluxcd/' },
-            { text: 'Flagger', link: 'ttps://github.com/weaveworks/flagger' },
+            { text: 'Repo', link: 'https://github.com/stefanprodan/gitops-helm-workshop' },
         ],
         sidebar: [
             '/',
