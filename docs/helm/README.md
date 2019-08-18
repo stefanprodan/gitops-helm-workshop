@@ -187,3 +187,86 @@ git pull origin master
 Open your browser and navigate to `http://<LB-IP>/`, you should see podinfo v2.1.3 UI.
 
 ![v2.1.3](/podinfo-2.1.3.png)
+
+## Sealed secrets
+
+In order to store secrets safely in a public Git repo you can use the
+[Sealed Secrets controller](https://github.com/bitnami-labs/sealed-secrets)
+and encrypt your Kubernetes Secrets into **SealedSecrets**.
+The sealed secret can be decrypted only by the controller running in your cluster.
+
+Create the Sealed Secrets Helm release:
+
+```yaml
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: sealed-secrets
+  namespace: fluxcd
+  annotations:
+    fluxcd.io/ignore: "false"
+spec:
+  releaseName: sealed-secrets
+  chart:
+    repository: https://kubernetes-charts.storage.googleapis.com/
+    name: sealed-secrets
+    version: 1.3.3
+```
+
+Apply changes:
+
+```sh
+git add . && \
+git commit -m "install podinfo" && \
+git push origin master && \
+fluxctl sync
+```
+
+Install the kubeseal CLI:
+
+```sh
+wget https://github.com/bitnami-labs/sealed-secrets/releases/download/v0.8.1/kubeseal-darwin-amd64
+sudo install -m 755 kubeseal-darwin-amd64 /usr/local/bin/kubeseal
+```
+
+At startup, the sealed-secrets controller generates a RSA key and logs the public key.
+Using kubeseal you can save your public key as pub-cert.pem,
+the public key can be safely stored in Git, and can be used to encrypt secrets
+without direct access to the Kubernetes cluster:
+
+```sh
+kubeseal --fetch-cert \
+--controller-namespace=fluxcd \
+--controller-name=sealed-secrets \
+> pub-cert.pem
+```
+
+You can generate a Kubernetes secret locally with kubectl and encrypt it with kubeseal:
+
+```sh
+kubectl -n dev create secret generic basic-auth \
+--from-literal=user=admin \
+--from-literal=password=admin \
+--dry-run \
+-o json > basic-auth.json
+
+kubeseal --format=yaml --cert=pub-cert.pem < basic-auth.json > basic-auth.yaml
+```
+
+This generates a custom resource of type SealedSecret that contains the encrypted credentials.
+
+Flux will apply the sealed secret on your cluster and sealed-secrets controller will
+then decrypt it into a Kubernetes secret.
+
+To prepare for disaster recovery you should backup the Sealed Secrets controller private key with:
+
+```sh
+kubectl get secret -n fluxcd sealed-secrets-key -o yaml --export > sealed-secrets-key.yaml
+```
+
+To restore from backup after a disaster, replace the newly-created secret and restart the controller:
+
+```sh
+kubectl replace secret -n fluxcd sealed-secrets-key -f sealed-secrets-key.yaml
+kubectl delete pod -n fluxcd -l app=sealed-secrets
+```
