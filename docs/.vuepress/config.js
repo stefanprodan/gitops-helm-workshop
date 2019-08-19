@@ -18,6 +18,10 @@ module.exports = {
             '/canary/',
             '/test/'
         ]
-    }
+    },
+    head: [
+        ['link', { rel: 'icon', href: '/favicon.png' }],
+        ['link', { rel: 'stylesheet', href: '/website.css' }]
+    ]
 };
 
