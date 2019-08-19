@@ -82,7 +82,7 @@ spec:
 Apply changes:
 
 ```sh
-git add . && \
+git add -A && \
 git commit -m "update podinfo" && \
 git push origin master && \
 fluxctl sync
@@ -117,7 +117,7 @@ spec:
 Apply changes:
 
 ```sh
-git add . && \
+git add -A && \
 git commit -m "update podinfo" && \
 git push origin master && \
 fluxctl sync

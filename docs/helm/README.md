@@ -52,7 +52,7 @@ spec:
 Apply changes:
 
 ```sh
-git add . && \
+git add -A && \
 git commit -m "install ingress" && \
 git push origin master && \
 fluxctl sync
@@ -126,7 +126,7 @@ spec:
 Apply changes:
 
 ```sh
-git add . && \
+git add -A && \
 git commit -m "install podinfo" && \
 git push origin master && \
 fluxctl sync
@@ -163,7 +163,7 @@ metadata:
 Commit and push the changes to GitHub:
 
 ```sh
-git add . && git commit -m "automate podinfo" && git push origin master
+git add -A && git commit -m "automate podinfo" && git push origin master
 ```
 
 Sync the the changes on the cluster:
@@ -216,7 +216,7 @@ spec:
 Apply changes:
 
 ```sh
-git add . && \
+git add -A && \
 git commit -m "install sealed-secrets" && \
 git push origin master && \
 fluxctl sync
