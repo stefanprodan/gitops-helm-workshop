@@ -8,7 +8,7 @@
     <link rel="icon" href="/favicon.png">
   <link rel="stylesheet" href="/website.css">
     
-    <link rel="preload" href="/assets/css/0.styles.a0ada997.css" as="style"><link rel="preload" href="/assets/js/app.1eb883de.js" as="script"><link rel="preload" href="/assets/js/2.795534d9.js" as="script"><link rel="preload" href="/assets/js/10.6a09eb28.js" as="script"><link rel="prefetch" href="/assets/js/11.d53eb7de.js"><link rel="prefetch" href="/assets/js/3.0c89a451.js"><link rel="prefetch" href="/assets/js/4.e2e0255b.js"><link rel="prefetch" href="/assets/js/5.653dd45a.js"><link rel="prefetch" href="/assets/js/6.c7d23581.js"><link rel="prefetch" href="/assets/js/7.92f7b8df.js"><link rel="prefetch" href="/assets/js/8.70f4a645.js"><link rel="prefetch" href="/assets/js/9.8f92e654.js">
+    <link rel="preload" href="/assets/css/0.styles.a0ada997.css" as="style"><link rel="preload" href="/assets/js/app.1a25c4ea.js" as="script"><link rel="preload" href="/assets/js/2.795534d9.js" as="script"><link rel="preload" href="/assets/js/10.2f81f3c4.js" as="script"><link rel="prefetch" href="/assets/js/11.d53eb7de.js"><link rel="prefetch" href="/assets/js/3.0c89a451.js"><link rel="prefetch" href="/assets/js/4.e2e0255b.js"><link rel="prefetch" href="/assets/js/5.653dd45a.js"><link rel="prefetch" href="/assets/js/6.c8d64f9d.js"><link rel="prefetch" href="/assets/js/7.bd86c6ae.js"><link rel="prefetch" href="/assets/js/8.b2679f1f.js"><link rel="prefetch" href="/assets/js/9.1f3a4ec4.js">
     <link rel="stylesheet" href="/assets/css/0.styles.a0ada997.css">
   </head>
   <body>
@@ -75,7 +75,7 @@
   <span class="token key atrule">values</span><span class="token punctuation">:</span>
     <span class="token key atrule">fullnameOverride</span><span class="token punctuation">:</span> helm<span class="token punctuation">-</span>tester
     <span class="token key atrule">serviceAccountName</span><span class="token punctuation">:</span> helm<span class="token punctuation">-</span>tester
-</code></pre></div><p>Apply changes:</p> <div class="language-sh extra-class"><pre class="language-sh"><code><span class="token function">git</span> <span class="token function">add</span> <span class="token builtin class-name">.</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">\</span>
+</code></pre></div><p>Apply changes:</p> <div class="language-sh extra-class"><pre class="language-sh"><code><span class="token function">git</span> <span class="token function">add</span> -A <span class="token operator">&amp;&amp;</span> <span class="token punctuation">\</span>
 <span class="token function">git</span> commit -m <span class="token string">&quot;update podinfo&quot;</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">\</span>
 <span class="token function">git</span> push origin master <span class="token operator">&amp;&amp;</span> <span class="token punctuation">\</span>
 fluxctl <span class="token function">sync</span>
@@ -98,7 +98,7 @@ fluxctl <span class="token function">sync</span>
         <span class="token key atrule">url</span><span class="token punctuation">:</span> http<span class="token punctuation">:</span>//tester.prod/
         <span class="token key atrule">metadata</span><span class="token punctuation">:</span>
           <span class="token key atrule">cmd</span><span class="token punctuation">:</span> <span class="token string">&quot;hey -z 2m -q 10 -c 2 http://podinfo:9898/&quot;</span>
-</code></pre></div><p>Apply changes:</p> <div class="language-sh extra-class"><pre class="language-sh"><code><span class="token function">git</span> <span class="token function">add</span> <span class="token builtin class-name">.</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">\</span>
+</code></pre></div><p>Apply changes:</p> <div class="language-sh extra-class"><pre class="language-sh"><code><span class="token function">git</span> <span class="token function">add</span> -A <span class="token operator">&amp;&amp;</span> <span class="token punctuation">\</span>
 <span class="token function">git</span> commit -m <span class="token string">&quot;update podinfo&quot;</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">\</span>
 <span class="token function">git</span> push origin master <span class="token operator">&amp;&amp;</span> <span class="token punctuation">\</span>
 fluxctl <span class="token function">sync</span>
@@ -108,6 +108,6 @@ If the helm test fails, Flagger will retry until the analysis threshold is reach
         <a href="/canary/" class="prev">
           Canary Releases
         </a></span> <!----></p></div> </main></div><div class="global-ui"></div></div>
-    <script src="/assets/js/app.1eb883de.js" defer></script><script src="/assets/js/2.795534d9.js" defer></script><script src="/assets/js/10.6a09eb28.js" defer></script>
+    <script src="/assets/js/app.1a25c4ea.js" defer></script><script src="/assets/js/2.795534d9.js" defer></script><script src="/assets/js/10.2f81f3c4.js" defer></script>
   </body>
 </html>

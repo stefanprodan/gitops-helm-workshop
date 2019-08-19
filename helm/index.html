@@ -8,7 +8,7 @@
     <link rel="icon" href="/favicon.png">
   <link rel="stylesheet" href="/website.css">
     
-    <link rel="preload" href="/assets/css/0.styles.a0ada997.css" as="style"><link rel="preload" href="/assets/js/app.1eb883de.js" as="script"><link rel="preload" href="/assets/js/2.795534d9.js" as="script"><link rel="preload" href="/assets/js/7.92f7b8df.js" as="script"><link rel="prefetch" href="/assets/js/10.6a09eb28.js"><link rel="prefetch" href="/assets/js/11.d53eb7de.js"><link rel="prefetch" href="/assets/js/3.0c89a451.js"><link rel="prefetch" href="/assets/js/4.e2e0255b.js"><link rel="prefetch" href="/assets/js/5.653dd45a.js"><link rel="prefetch" href="/assets/js/6.c7d23581.js"><link rel="prefetch" href="/assets/js/8.70f4a645.js"><link rel="prefetch" href="/assets/js/9.8f92e654.js">
+    <link rel="preload" href="/assets/css/0.styles.a0ada997.css" as="style"><link rel="preload" href="/assets/js/app.1a25c4ea.js" as="script"><link rel="preload" href="/assets/js/2.795534d9.js" as="script"><link rel="preload" href="/assets/js/7.bd86c6ae.js" as="script"><link rel="prefetch" href="/assets/js/10.2f81f3c4.js"><link rel="prefetch" href="/assets/js/11.d53eb7de.js"><link rel="prefetch" href="/assets/js/3.0c89a451.js"><link rel="prefetch" href="/assets/js/4.e2e0255b.js"><link rel="prefetch" href="/assets/js/5.653dd45a.js"><link rel="prefetch" href="/assets/js/6.c8d64f9d.js"><link rel="prefetch" href="/assets/js/8.b2679f1f.js"><link rel="prefetch" href="/assets/js/9.1f3a4ec4.js">
     <link rel="stylesheet" href="/assets/css/0.styles.a0ada997.css">
   </head>
   <body>
@@ -41,7 +41,7 @@ The controller will run inside the Linkerd mesh.</p> <p>Create a namespace with 
     <span class="token key atrule">controller</span><span class="token punctuation">:</span>
       <span class="token key atrule">service</span><span class="token punctuation">:</span>
         <span class="token key atrule">type</span><span class="token punctuation">:</span> LoadBalancer
-</code></pre></div><p>Apply changes:</p> <div class="language-sh extra-class"><pre class="language-sh"><code><span class="token function">git</span> <span class="token function">add</span> <span class="token builtin class-name">.</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">\</span>
+</code></pre></div><p>Apply changes:</p> <div class="language-sh extra-class"><pre class="language-sh"><code><span class="token function">git</span> <span class="token function">add</span> -A <span class="token operator">&amp;&amp;</span> <span class="token punctuation">\</span>
 <span class="token function">git</span> commit -m <span class="token string">&quot;install ingress&quot;</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">\</span>
 <span class="token function">git</span> push origin master <span class="token operator">&amp;&amp;</span> <span class="token punctuation">\</span>
 fluxctl <span class="token function">sync</span>
@@ -86,7 +86,7 @@ You'll be installing podinfo using a Helm chart stored in the git repository at 
       <span class="token key atrule">path</span><span class="token punctuation">:</span> /
       <span class="token key atrule">hosts</span><span class="token punctuation">:</span>
         <span class="token punctuation">-</span> *
-</code></pre></div><p>Apply changes:</p> <div class="language-sh extra-class"><pre class="language-sh"><code><span class="token function">git</span> <span class="token function">add</span> <span class="token builtin class-name">.</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">\</span>
+</code></pre></div><p>Apply changes:</p> <div class="language-sh extra-class"><pre class="language-sh"><code><span class="token function">git</span> <span class="token function">add</span> -A <span class="token operator">&amp;&amp;</span> <span class="token punctuation">\</span>
 <span class="token function">git</span> commit -m <span class="token string">&quot;install podinfo&quot;</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">\</span>
 <span class="token function">git</span> push origin master <span class="token operator">&amp;&amp;</span> <span class="token punctuation">\</span>
 fluxctl <span class="token function">sync</span>
@@ -100,7 +100,7 @@ update by using glob, regex or semantic version expressions.</p> <p>Edit the pod
   <span class="token key atrule">annotations</span><span class="token punctuation">:</span>
     <span class="token key atrule">fluxcd.io/automated</span><span class="token punctuation">:</span> <span class="token string">&quot;true&quot;</span>
     <span class="token key atrule">fluxcd.io/tag.chart-image</span><span class="token punctuation">:</span> semver<span class="token punctuation">:</span>~2.1
-</code></pre></div><p>Commit and push the changes to GitHub:</p> <div class="language-sh extra-class"><pre class="language-sh"><code><span class="token function">git</span> <span class="token function">add</span> <span class="token builtin class-name">.</span> <span class="token operator">&amp;&amp;</span> <span class="token function">git</span> commit -m <span class="token string">&quot;automate podinfo&quot;</span> <span class="token operator">&amp;&amp;</span> <span class="token function">git</span> push origin master
+</code></pre></div><p>Commit and push the changes to GitHub:</p> <div class="language-sh extra-class"><pre class="language-sh"><code><span class="token function">git</span> <span class="token function">add</span> -A <span class="token operator">&amp;&amp;</span> <span class="token function">git</span> commit -m <span class="token string">&quot;automate podinfo&quot;</span> <span class="token operator">&amp;&amp;</span> <span class="token function">git</span> push origin master
 </code></pre></div><p>Sync the the changes on the cluster:</p> <div class="language-sh extra-class"><pre class="language-sh"><code>fluxctl <span class="token function">sync</span>
 </code></pre></div><p>Validate that the Helm operator has upgraded podinfo:</p> <div class="language-sh extra-class"><pre class="language-sh"><code>kubectl -n prod get hr
 </code></pre></div><p>Pull the changes made by Flux locally:</p> <div class="language-sh extra-class"><pre class="language-sh"><code><span class="token function">git</span> pull origin master
@@ -120,7 +120,7 @@ The sealed secret can be decrypted only by the controller running in your cluste
     <span class="token key atrule">repository</span><span class="token punctuation">:</span> https<span class="token punctuation">:</span>//kubernetes<span class="token punctuation">-</span>charts.storage.googleapis.com/
     <span class="token key atrule">name</span><span class="token punctuation">:</span> sealed<span class="token punctuation">-</span>secrets
     <span class="token key atrule">version</span><span class="token punctuation">:</span> 1.3.3
-</code></pre></div><p>Apply changes:</p> <div class="language-sh extra-class"><pre class="language-sh"><code><span class="token function">git</span> <span class="token function">add</span> <span class="token builtin class-name">.</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">\</span>
+</code></pre></div><p>Apply changes:</p> <div class="language-sh extra-class"><pre class="language-sh"><code><span class="token function">git</span> <span class="token function">add</span> -A <span class="token operator">&amp;&amp;</span> <span class="token punctuation">\</span>
 <span class="token function">git</span> commit -m <span class="token string">&quot;install sealed-secrets&quot;</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">\</span>
 <span class="token function">git</span> push origin master <span class="token operator">&amp;&amp;</span> <span class="token punctuation">\</span>
 fluxctl <span class="token function">sync</span>
@@ -153,6 +153,6 @@ kubectl delete pod -n fluxcd -l <span class="token assign-left variable">app</sp
         </a>
         →
       </span></p></div> </main></div><div class="global-ui"></div></div>
-    <script src="/assets/js/app.1eb883de.js" defer></script><script src="/assets/js/2.795534d9.js" defer></script><script src="/assets/js/7.92f7b8df.js" defer></script>
+    <script src="/assets/js/app.1a25c4ea.js" defer></script><script src="/assets/js/2.795534d9.js" defer></script><script src="/assets/js/7.bd86c6ae.js" defer></script>
   </body>
 </html>
