@@ -8,7 +8,7 @@
     <link rel="icon" href="/favicon.png">
   <link rel="stylesheet" href="/website.css">
     
-    <link rel="preload" href="/assets/css/0.styles.a0ada997.css" as="style"><link rel="preload" href="/assets/js/app.97dfd42a.js" as="script"><link rel="preload" href="/assets/js/2.795534d9.js" as="script"><link rel="preload" href="/assets/js/7.ae9c9d29.js" as="script"><link rel="prefetch" href="/assets/js/10.6a09eb28.js"><link rel="prefetch" href="/assets/js/11.d53eb7de.js"><link rel="prefetch" href="/assets/js/3.0c89a451.js"><link rel="prefetch" href="/assets/js/4.e2e0255b.js"><link rel="prefetch" href="/assets/js/5.653dd45a.js"><link rel="prefetch" href="/assets/js/6.c7d23581.js"><link rel="prefetch" href="/assets/js/8.70f4a645.js"><link rel="prefetch" href="/assets/js/9.8f92e654.js">
+    <link rel="preload" href="/assets/css/0.styles.a0ada997.css" as="style"><link rel="preload" href="/assets/js/app.e6c3ed3b.js" as="script"><link rel="preload" href="/assets/js/2.795534d9.js" as="script"><link rel="preload" href="/assets/js/7.386c148c.js" as="script"><link rel="prefetch" href="/assets/js/10.6a09eb28.js"><link rel="prefetch" href="/assets/js/11.d53eb7de.js"><link rel="prefetch" href="/assets/js/3.0c89a451.js"><link rel="prefetch" href="/assets/js/4.e2e0255b.js"><link rel="prefetch" href="/assets/js/5.d55e3859.js"><link rel="prefetch" href="/assets/js/6.79e0b2bd.js"><link rel="prefetch" href="/assets/js/8.70f4a645.js"><link rel="prefetch" href="/assets/js/9.8f92e654.js">
     <link rel="stylesheet" href="/assets/css/0.styles.a0ada997.css">
   </head>
   <body>
@@ -110,12 +110,12 @@ and encrypt your Kubernetes Secrets into <strong>SealedSecrets</strong>.
 The sealed secret can be decrypted only by the controller running in your cluster.</p> <p>Create the Sealed Secrets Helm release:</p> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> helm.fluxcd.io/v1
 <span class="token key atrule">kind</span><span class="token punctuation">:</span> HelmRelease
 <span class="token key atrule">metadata</span><span class="token punctuation">:</span>
-  <span class="token key atrule">name</span><span class="token punctuation">:</span> sealed<span class="token punctuation">-</span>secrets
-  <span class="token key atrule">namespace</span><span class="token punctuation">:</span> fluxcd
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> sealed<span class="token punctuation">-</span>secrets<span class="token punctuation">-</span>controller
+  <span class="token key atrule">namespace</span><span class="token punctuation">:</span> kube<span class="token punctuation">-</span>system
   <span class="token key atrule">annotations</span><span class="token punctuation">:</span>
     <span class="token key atrule">fluxcd.io/ignore</span><span class="token punctuation">:</span> <span class="token string">&quot;false&quot;</span>
 <span class="token key atrule">spec</span><span class="token punctuation">:</span>
-  <span class="token key atrule">releaseName</span><span class="token punctuation">:</span> sealed<span class="token punctuation">-</span>secrets
+  <span class="token key atrule">releaseName</span><span class="token punctuation">:</span> sealed<span class="token punctuation">-</span>secrets<span class="token punctuation">-</span>controller
   <span class="token key atrule">chart</span><span class="token punctuation">:</span>
     <span class="token key atrule">repository</span><span class="token punctuation">:</span> https<span class="token punctuation">:</span>//kubernetes<span class="token punctuation">-</span>charts.storage.googleapis.com/
     <span class="token key atrule">name</span><span class="token punctuation">:</span> sealed<span class="token punctuation">-</span>secrets
@@ -153,6 +153,6 @@ kubectl delete pod -n fluxcd -l <span class="token assign-left variable">app</sp
         </a>
         →
       </span></p></div> </main></div><div class="global-ui"></div></div>
-    <script src="/assets/js/app.97dfd42a.js" defer></script><script src="/assets/js/2.795534d9.js" defer></script><script src="/assets/js/7.ae9c9d29.js" defer></script>
+    <script src="/assets/js/app.e6c3ed3b.js" defer></script><script src="/assets/js/2.795534d9.js" defer></script><script src="/assets/js/7.386c148c.js" defer></script>
   </body>
 </html>
