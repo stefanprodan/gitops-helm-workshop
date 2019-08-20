@@ -201,16 +201,16 @@ Create the Sealed Secrets Helm release:
 apiVersion: helm.fluxcd.io/v1
 kind: HelmRelease
 metadata:
-  name: sealed-secrets-controller
-  namespace: kube-system
+  name: sealed-secrets
+  namespace: fluxcd
   annotations:
     fluxcd.io/ignore: "false"
 spec:
-  releaseName: sealed-secrets-controller
+  releaseName: sealed-secrets
   chart:
     repository: https://kubernetes-charts.storage.googleapis.com/
     name: sealed-secrets
-    version: 1.3.3
+    version: 1.3.4
 ```
 
 Apply changes:
