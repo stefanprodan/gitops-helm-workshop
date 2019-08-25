@@ -53,7 +53,7 @@ Install Flux by providing your GitHub repository URL:
 ```sh
 helm upgrade -i flux fluxcd/flux --wait \
 --namespace fluxcd \
---set git.url=git@github.com:${GHUSER}/gitops-workshop
+--set git.url=git@github.com:${GHUSER}/gitops-helm-workshop
 ```
 
 Install fluxctl:
@@ -87,7 +87,7 @@ Install Flux Helm Operator in the `fluxcd` namespace:
 helm upgrade -i helm-operator fluxcd/helm-operator --wait \
 --namespace fluxcd \
 --set createCRD=true \
---set git.ssh.secret=flux-git-deploy
+--set git.ssh.secretName=flux-git-deploy
 ```
 
 ## Linkerd

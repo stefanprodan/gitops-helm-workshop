@@ -100,7 +100,7 @@ metadata:
 spec:
   releaseName: podinfo
   chart:
-    git: git@github.com:GHUSER/gitops-workshop
+    git: git@github.com:GHUSER/gitops-helm-workshop
     ref: master
     path: cluster/charts/podinfo
   values:

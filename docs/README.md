@@ -5,7 +5,7 @@ meta:
     content: gitops kubernetes helm fluxcd linkerd flagger
 home: true
 sidebar: auto
-heroImage: /gitops-workshop.png
+heroImage: /gitops-helm-workshop.png
 heroText: Progressive Delivery for Kubernetes
 tagline: Welcome to the GitOps Helm Workshop
 actionText: Get Started →
