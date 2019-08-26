@@ -8,7 +8,7 @@
     <link rel="icon" href="/favicon.png">
   <link rel="stylesheet" href="/website.css">
     
-    <link rel="preload" href="/assets/css/0.styles.a0ada997.css" as="style"><link rel="preload" href="/assets/js/app.0baa456a.js" as="script"><link rel="preload" href="/assets/js/2.795534d9.js" as="script"><link rel="preload" href="/assets/js/9.8f92e654.js" as="script"><link rel="prefetch" href="/assets/js/10.2f81f3c4.js"><link rel="prefetch" href="/assets/js/11.d53eb7de.js"><link rel="prefetch" href="/assets/js/3.0c89a451.js"><link rel="prefetch" href="/assets/js/4.e2e0255b.js"><link rel="prefetch" href="/assets/js/5.653dd45a.js"><link rel="prefetch" href="/assets/js/6.c8d64f9d.js"><link rel="prefetch" href="/assets/js/7.5948f187.js"><link rel="prefetch" href="/assets/js/8.70f4a645.js">
+    <link rel="preload" href="/assets/css/0.styles.a0ada997.css" as="style"><link rel="preload" href="/assets/js/app.1848f424.js" as="script"><link rel="preload" href="/assets/js/2.795534d9.js" as="script"><link rel="preload" href="/assets/js/9.32124bbf.js" as="script"><link rel="prefetch" href="/assets/js/10.26484e7b.js"><link rel="prefetch" href="/assets/js/11.d53eb7de.js"><link rel="prefetch" href="/assets/js/3.0c89a451.js"><link rel="prefetch" href="/assets/js/4.e2e0255b.js"><link rel="prefetch" href="/assets/js/5.653dd45a.js"><link rel="prefetch" href="/assets/js/6.c8d64f9d.js"><link rel="prefetch" href="/assets/js/7.33f95e14.js"><link rel="prefetch" href="/assets/js/8.70f4a645.js">
     <link rel="stylesheet" href="/assets/css/0.styles.a0ada997.css">
   </head>
   <body>
@@ -33,7 +33,7 @@ and clone it locally (replace the <code>GHUSER</code> value with your GitHub use
 </code></pre></div><h2 id="flux"><a href="#flux" aria-hidden="true" class="header-anchor">#</a> Flux</h2> <p>Add FluxCD repository to Helm repos:</p> <div class="language-sh extra-class"><pre class="language-sh"><code>helm repo <span class="token function">add</span> fluxcd https://charts.fluxcd.io
 </code></pre></div><p>Install Flux by providing your GitHub repository URL:</p> <div class="language-sh extra-class"><pre class="language-sh"><code>helm upgrade -i flux fluxcd/flux --wait <span class="token punctuation">\</span>
 --namespace fluxcd <span class="token punctuation">\</span>
---set git.url<span class="token operator">=</span>git@github.com:<span class="token variable">${GHUSER}</span>/gitops-workshop
+--set git.url<span class="token operator">=</span>git@github.com:<span class="token variable">${GHUSER}</span>/gitops-helm-workshop
 </code></pre></div><p>Install fluxctl:</p> <div class="language-sh extra-class"><pre class="language-sh"><code><span class="token comment"># macOS</span>
 brew <span class="token function">install</span> fluxctl
 <span class="token comment"># linux</span>
@@ -48,7 +48,7 @@ Go to <code>Settings &gt; Deploy keys</code> click on <code>Add deploy key</code
 paste the Flux public key and click <code>Add key</code>.</p> <h2 id="helm-operator"><a href="#helm-operator" aria-hidden="true" class="header-anchor">#</a> Helm Operator</h2> <p>Install Flux Helm Operator in the <code>fluxcd</code> namespace:</p> <div class="language-sh extra-class"><pre class="language-sh"><code>helm upgrade -i helm-operator fluxcd/helm-operator --wait <span class="token punctuation">\</span>
 --namespace fluxcd <span class="token punctuation">\</span>
 --set <span class="token assign-left variable">createCRD</span><span class="token operator">=</span>true <span class="token punctuation">\</span>
---set git.ssh.secret<span class="token operator">=</span>flux-git-deploy
+--set git.ssh.secretName<span class="token operator">=</span>flux-git-deploy
 </code></pre></div><h2 id="linkerd"><a href="#linkerd" aria-hidden="true" class="header-anchor">#</a> Linkerd</h2> <p>Download the Linkerd v2 CLI:</p> <div class="language-sh extra-class"><pre class="language-sh"><code><span class="token function">curl</span> -sL https://run.linkerd.io/install <span class="token operator">|</span> <span class="token function">sh</span>
 <span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span><span class="token environment constant">$PATH</span><span class="token builtin class-name">:</span><span class="token environment constant">$HOME</span>/.linkerd2/bin
 </code></pre></div><p>Install the Linkerd control plane in the <code>linkerd</code> namespace:</p> <div class="language-sh extra-class"><pre class="language-sh"><code>linkerd <span class="token function">install</span> <span class="token operator">|</span> kubectl apply -f -
@@ -68,6 +68,6 @@ paste the Flux public key and click <code>Add key</code>.</p> <h2 id="helm-opera
         </a>
         →
       </span></p></div> </main></div><div class="global-ui"></div></div>
-    <script src="/assets/js/app.0baa456a.js" defer></script><script src="/assets/js/2.795534d9.js" defer></script><script src="/assets/js/9.8f92e654.js" defer></script>
+    <script src="/assets/js/app.1848f424.js" defer></script><script src="/assets/js/2.795534d9.js" defer></script><script src="/assets/js/9.32124bbf.js" defer></script>
   </body>
 </html>
