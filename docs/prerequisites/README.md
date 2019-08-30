@@ -4,7 +4,7 @@ title: Prerequisites
 
 # Prerequisites
 
-In order ot install the workshop prerequisites you'll need a Kubernetes cluster **1.13**
+In order to install the workshop prerequisites you'll need a Kubernetes cluster **1.13**
 or newer with **Load Balancer** support.
 Make sure you have the following tools installed locally:
 * kubectl 1.14
