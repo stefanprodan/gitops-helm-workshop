@@ -8,6 +8,7 @@ metadata:
     chart: {{ .Chart.Name }}-{{ .Chart.Version }}
     app: {{ template "podinfo.name" . }}
   annotations:
+    linkerd.io/inject: disabled
     "helm.sh/hook": test-success
 spec:
   containers:

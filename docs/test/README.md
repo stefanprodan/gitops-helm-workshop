@@ -21,6 +21,7 @@ metadata:
     chart: {{ .Chart.Name }}-{{ .Chart.Version }}
     app: {{ template "podinfo.name" . }}
   annotations:
+    linkerd.io/inject: disabled
     "helm.sh/hook": test-success
 spec:
   containers:
@@ -109,7 +110,7 @@ spec:
           type: "helm"
           cmd: "test podinfo --cleanup"
       - name: load-test
-        url: http://tester.prod/
+        url: http://load-tester.prod/
         metadata:
           cmd: "hey -z 2m -q 10 -c 2 http://podinfo:9898/"
 ```
