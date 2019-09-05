@@ -1,20 +1,32 @@
 # Default values for podinfo.
 
+replicaCount: 2
+logLevel: info
+backend: #http://backend-podinfo:9898/echo
+message: #UI greetings
+
+faults:
+  delay: false
+  error: false
+
 image:
   repository: stefanprodan/podinfo
-  tag: 2.1.3
+  tag: 3.0.0
   pullPolicy: IfNotPresent
 
 service:
   enabled: true
   type: ClusterIP
+  metricsPort: 9797
+  httpPort: 9898
   externalPort: 9898
-  containerPort: 9898
+  grpcPort: 9999
+  grpcService: podinfo
   nodePort: 31198
 
-replicaCount: 2
+# metrics-server add-on required
 hpa:
-  enabled: true
+  enabled: false
   maxReplicas: 10
   # average total CPU usage per pod (1-100)
   cpu:
@@ -34,10 +46,10 @@ ingress:
   enabled: false
   annotations: {}
     # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
-  path: /
-  hosts:
-    - podinfo.local
+  # kubernetes.io/tls-acme: "true"
+  path: /*
+  hosts: []
+  #    - podinfo.local
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:
@@ -54,12 +66,3 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
-
-logLevel: info
-color: blue
-backend: #http://backend-podinfo:9898/echo
-message: #UI greetings
-
-faults:
-  delay: false
-  error: false

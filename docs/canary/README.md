@@ -23,7 +23,7 @@ spec:
   values:
     image:
       repository: stefanprodan/podinfo
-      tag: 2.1.0
+      tag: 3.0.0
     service:
       enabled: false
       type: ClusterIP
@@ -121,7 +121,7 @@ spec:
   releaseName: podinfo
   values:
     image:
-      tag: 2.1.1
+      tag: 3.0.1
 ```
 
 Apply changes:
@@ -154,7 +154,7 @@ spec:
   releaseName: podinfo
   values:
     image:
-      tag: 2.1.2
+      tag: 3.0.2
 ```
 
 Apply changes:
