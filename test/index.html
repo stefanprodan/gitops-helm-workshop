@@ -8,7 +8,7 @@
     <link rel="icon" href="/favicon.png">
   <link rel="stylesheet" href="/website.css">
     
-    <link rel="preload" href="/assets/css/0.styles.a0ada997.css" as="style"><link rel="preload" href="/assets/js/app.fb091873.js" as="script"><link rel="preload" href="/assets/js/2.795534d9.js" as="script"><link rel="preload" href="/assets/js/10.40cbf237.js" as="script"><link rel="prefetch" href="/assets/js/11.d53eb7de.js"><link rel="prefetch" href="/assets/js/3.0c89a451.js"><link rel="prefetch" href="/assets/js/4.e2e0255b.js"><link rel="prefetch" href="/assets/js/5.653dd45a.js"><link rel="prefetch" href="/assets/js/6.c8d64f9d.js"><link rel="prefetch" href="/assets/js/7.9b57361a.js"><link rel="prefetch" href="/assets/js/8.b2679f1f.js"><link rel="prefetch" href="/assets/js/9.dfdadd61.js">
+    <link rel="preload" href="/assets/css/0.styles.a0ada997.css" as="style"><link rel="preload" href="/assets/js/app.8963f6d7.js" as="script"><link rel="preload" href="/assets/js/2.795534d9.js" as="script"><link rel="preload" href="/assets/js/10.d4bff290.js" as="script"><link rel="prefetch" href="/assets/js/11.d53eb7de.js"><link rel="prefetch" href="/assets/js/3.0c89a451.js"><link rel="prefetch" href="/assets/js/4.e2e0255b.js"><link rel="prefetch" href="/assets/js/5.653dd45a.js"><link rel="prefetch" href="/assets/js/6.604e5e2d.js"><link rel="prefetch" href="/assets/js/7.42787d3a.js"><link rel="prefetch" href="/assets/js/8.b2679f1f.js"><link rel="prefetch" href="/assets/js/9.43d62634.js">
     <link rel="stylesheet" href="/assets/css/0.styles.a0ada997.css">
   </head>
   <body>
@@ -32,34 +32,16 @@
   <span class="token key atrule">containers</span><span class="token punctuation">:</span>
     <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> tools
       <span class="token key atrule">image</span><span class="token punctuation">:</span> giantswarm/tiny<span class="token punctuation">-</span>tools
-      <span class="token key atrule">command</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&quot;/bin/sh&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;/scripts/test.sh&quot;</span><span class="token punctuation">]</span>
+      <span class="token key atrule">command</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> sh
+        <span class="token punctuation">-</span> <span class="token punctuation">-</span>c
+        <span class="token punctuation">-</span> <span class="token punctuation">|</span><span class="token scalar string">
+          TOKEN=$(curl -sd 'test' ${PODINFO_SVC}/token | jq -r .token) &amp;&amp;
+          curl -H &quot;Authorization: Bearer ${TOKEN}&quot; ${PODINFO_SVC}/token/validate | grep test</span>
       <span class="token key atrule">env</span><span class="token punctuation">:</span>
       <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> PODINFO_SVC
         <span class="token key atrule">value</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">{</span> template &quot;podinfo.fullname&quot; . <span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">:</span><span class="token punctuation">{</span><span class="token punctuation">{</span> .Values.service.externalPort <span class="token punctuation">}</span><span class="token punctuation">}</span>
-      <span class="token key atrule">volumeMounts</span><span class="token punctuation">:</span>
-      <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> scripts
-        <span class="token key atrule">mountPath</span><span class="token punctuation">:</span> /scripts
   <span class="token key atrule">restartPolicy</span><span class="token punctuation">:</span> Never
-  <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
-  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> scripts
-    <span class="token key atrule">configMap</span><span class="token punctuation">:</span>
-      <span class="token key atrule">name</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">{</span> template &quot;podinfo.fullname&quot; . <span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">-</span>test<span class="token punctuation">-</span>cfg
-<span class="token punctuation">---</span>
-<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
-<span class="token key atrule">kind</span><span class="token punctuation">:</span> ConfigMap
-<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
-  <span class="token key atrule">name</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">{</span> template &quot;podinfo.fullname&quot; . <span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">-</span>test<span class="token punctuation">-</span>cfg
-  <span class="token key atrule">labels</span><span class="token punctuation">:</span>
-    <span class="token key atrule">heritage</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">{</span> .Release.Service <span class="token punctuation">}</span><span class="token punctuation">}</span>
-    <span class="token key atrule">release</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">{</span> .Release.Name <span class="token punctuation">}</span><span class="token punctuation">}</span>
-    <span class="token key atrule">chart</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">{</span> .Chart.Name <span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">-</span><span class="token punctuation">{</span><span class="token punctuation">{</span> .Chart.Version <span class="token punctuation">}</span><span class="token punctuation">}</span>
-    <span class="token key atrule">app</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">{</span> template &quot;podinfo.name&quot; . <span class="token punctuation">}</span><span class="token punctuation">}</span>
-<span class="token key atrule">data</span><span class="token punctuation">:</span>
-  <span class="token key atrule">test.sh</span><span class="token punctuation">:</span> <span class="token punctuation">|</span><span class="token scalar string">
-    #!/bin/sh
-    echo &quot;testing ${PODINFO_SVC}/token&quot;
-    TOKEN=$(curl -sd 'test' ${PODINFO_SVC}/token | jq -r .token) &amp;&amp; \
-    curl -H &quot;Authorization: Bearer ${TOKEN}&quot; ${PODINFO_SVC}/token/validate | grep test</span>
 </code></pre></div><p>Save the above file in <code>cluster/charts/podinfo/tests</code>.</p> <p>Deploy the Helm test runner in the <code>prod</code> namespace:</p> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> helm.fluxcd.io/v1
 <span class="token key atrule">kind</span><span class="token punctuation">:</span> HelmRelease
 <span class="token key atrule">metadata</span><span class="token punctuation">:</span>
@@ -109,6 +91,6 @@ If the helm test fails, Flagger will retry until the analysis threshold is reach
         <a href="/canary/" class="prev">
           Canary Releases
         </a></span> <!----></p></div> </main></div><div class="global-ui"></div></div>
-    <script src="/assets/js/app.fb091873.js" defer></script><script src="/assets/js/2.795534d9.js" defer></script><script src="/assets/js/10.40cbf237.js" defer></script>
+    <script src="/assets/js/app.8963f6d7.js" defer></script><script src="/assets/js/2.795534d9.js" defer></script><script src="/assets/js/10.d4bff290.js" defer></script>
   </body>
 </html>

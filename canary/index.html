@@ -8,7 +8,7 @@
     <link rel="icon" href="/favicon.png">
   <link rel="stylesheet" href="/website.css">
     
-    <link rel="preload" href="/assets/css/0.styles.a0ada997.css" as="style"><link rel="preload" href="/assets/js/app.fb091873.js" as="script"><link rel="preload" href="/assets/js/2.795534d9.js" as="script"><link rel="preload" href="/assets/js/6.c8d64f9d.js" as="script"><link rel="prefetch" href="/assets/js/10.40cbf237.js"><link rel="prefetch" href="/assets/js/11.d53eb7de.js"><link rel="prefetch" href="/assets/js/3.0c89a451.js"><link rel="prefetch" href="/assets/js/4.e2e0255b.js"><link rel="prefetch" href="/assets/js/5.653dd45a.js"><link rel="prefetch" href="/assets/js/7.9b57361a.js"><link rel="prefetch" href="/assets/js/8.b2679f1f.js"><link rel="prefetch" href="/assets/js/9.dfdadd61.js">
+    <link rel="preload" href="/assets/css/0.styles.a0ada997.css" as="style"><link rel="preload" href="/assets/js/app.8963f6d7.js" as="script"><link rel="preload" href="/assets/js/2.795534d9.js" as="script"><link rel="preload" href="/assets/js/6.604e5e2d.js" as="script"><link rel="prefetch" href="/assets/js/10.d4bff290.js"><link rel="prefetch" href="/assets/js/11.d53eb7de.js"><link rel="prefetch" href="/assets/js/3.0c89a451.js"><link rel="prefetch" href="/assets/js/4.e2e0255b.js"><link rel="prefetch" href="/assets/js/5.653dd45a.js"><link rel="prefetch" href="/assets/js/7.42787d3a.js"><link rel="prefetch" href="/assets/js/8.b2679f1f.js"><link rel="prefetch" href="/assets/js/9.43d62634.js">
     <link rel="stylesheet" href="/assets/css/0.styles.a0ada997.css">
   </head>
   <body>
@@ -28,7 +28,7 @@
   <span class="token key atrule">values</span><span class="token punctuation">:</span>
     <span class="token key atrule">image</span><span class="token punctuation">:</span>
       <span class="token key atrule">repository</span><span class="token punctuation">:</span> stefanprodan/podinfo
-      <span class="token key atrule">tag</span><span class="token punctuation">:</span> 2.1.0
+      <span class="token key atrule">tag</span><span class="token punctuation">:</span> 3.0.0
     <span class="token key atrule">service</span><span class="token punctuation">:</span>
       <span class="token key atrule">enabled</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
       <span class="token key atrule">type</span><span class="token punctuation">:</span> ClusterIP
@@ -92,7 +92,7 @@ Based on an analysis of these Linkerd provided metrics, a canary deployment is e
   <span class="token key atrule">releaseName</span><span class="token punctuation">:</span> podinfo
   <span class="token key atrule">values</span><span class="token punctuation">:</span>
     <span class="token key atrule">image</span><span class="token punctuation">:</span>
-      <span class="token key atrule">tag</span><span class="token punctuation">:</span> 2.1.1
+      <span class="token key atrule">tag</span><span class="token punctuation">:</span> 3.0.1
 </code></pre></div><p>Apply changes:</p> <div class="language-sh extra-class"><pre class="language-sh"><code><span class="token function">git</span> <span class="token function">add</span> -A <span class="token operator">&amp;&amp;</span> <span class="token punctuation">\</span>
 <span class="token function">git</span> commit -m <span class="token string">&quot;update podinfo&quot;</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">\</span>
 <span class="token function">git</span> push origin master <span class="token operator">&amp;&amp;</span> <span class="token punctuation">\</span>
@@ -106,7 +106,7 @@ rolls back the faulted version.</p> <p>Trigger another canary release:</p> <div 
   <span class="token key atrule">releaseName</span><span class="token punctuation">:</span> podinfo
   <span class="token key atrule">values</span><span class="token punctuation">:</span>
     <span class="token key atrule">image</span><span class="token punctuation">:</span>
-      <span class="token key atrule">tag</span><span class="token punctuation">:</span> 2.1.2
+      <span class="token key atrule">tag</span><span class="token punctuation">:</span> 3.0.2
 </code></pre></div><p>Apply changes:</p> <div class="language-sh extra-class"><pre class="language-sh"><code><span class="token function">git</span> <span class="token function">add</span> -A <span class="token operator">&amp;&amp;</span> <span class="token punctuation">\</span>
 <span class="token function">git</span> commit -m <span class="token string">&quot;update podinfo&quot;</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">\</span>
 <span class="token function">git</span> push origin master <span class="token operator">&amp;&amp;</span> <span class="token punctuation">\</span>
@@ -138,6 +138,6 @@ the canary is scaled to zero.</p> <p>Watch Flagger logs with:</p> <div class="la
         </a>
         →
       </span></p></div> </main></div><div class="global-ui"></div></div>
-    <script src="/assets/js/app.fb091873.js" defer></script><script src="/assets/js/2.795534d9.js" defer></script><script src="/assets/js/6.c8d64f9d.js" defer></script>
+    <script src="/assets/js/app.8963f6d7.js" defer></script><script src="/assets/js/2.795534d9.js" defer></script><script src="/assets/js/6.604e5e2d.js" defer></script>
   </body>
 </html>

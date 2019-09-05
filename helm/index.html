@@ -8,7 +8,7 @@
     <link rel="icon" href="/favicon.png">
   <link rel="stylesheet" href="/website.css">
     
-    <link rel="preload" href="/assets/css/0.styles.a0ada997.css" as="style"><link rel="preload" href="/assets/js/app.fb091873.js" as="script"><link rel="preload" href="/assets/js/2.795534d9.js" as="script"><link rel="preload" href="/assets/js/7.9b57361a.js" as="script"><link rel="prefetch" href="/assets/js/10.40cbf237.js"><link rel="prefetch" href="/assets/js/11.d53eb7de.js"><link rel="prefetch" href="/assets/js/3.0c89a451.js"><link rel="prefetch" href="/assets/js/4.e2e0255b.js"><link rel="prefetch" href="/assets/js/5.653dd45a.js"><link rel="prefetch" href="/assets/js/6.c8d64f9d.js"><link rel="prefetch" href="/assets/js/8.b2679f1f.js"><link rel="prefetch" href="/assets/js/9.dfdadd61.js">
+    <link rel="preload" href="/assets/css/0.styles.a0ada997.css" as="style"><link rel="preload" href="/assets/js/app.8963f6d7.js" as="script"><link rel="preload" href="/assets/js/2.795534d9.js" as="script"><link rel="preload" href="/assets/js/7.42787d3a.js" as="script"><link rel="prefetch" href="/assets/js/10.d4bff290.js"><link rel="prefetch" href="/assets/js/11.d53eb7de.js"><link rel="prefetch" href="/assets/js/3.0c89a451.js"><link rel="prefetch" href="/assets/js/4.e2e0255b.js"><link rel="prefetch" href="/assets/js/5.653dd45a.js"><link rel="prefetch" href="/assets/js/6.604e5e2d.js"><link rel="prefetch" href="/assets/js/8.b2679f1f.js"><link rel="prefetch" href="/assets/js/9.43d62634.js">
     <link rel="stylesheet" href="/assets/css/0.styles.a0ada997.css">
   </head>
   <body>
@@ -71,7 +71,7 @@ You'll be installing podinfo using a Helm chart stored in the git repository at 
   <span class="token key atrule">values</span><span class="token punctuation">:</span>
     <span class="token key atrule">image</span><span class="token punctuation">:</span>
       <span class="token key atrule">repository</span><span class="token punctuation">:</span> stefanprodan/podinfo
-      <span class="token key atrule">tag</span><span class="token punctuation">:</span> 2.1.0
+      <span class="token key atrule">tag</span><span class="token punctuation">:</span> 3.0.0
     <span class="token key atrule">service</span><span class="token punctuation">:</span>
       <span class="token key atrule">enabled</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
       <span class="token key atrule">type</span><span class="token punctuation">:</span> ClusterIP
@@ -83,15 +83,12 @@ You'll be installing podinfo using a Helm chart stored in the git repository at 
           proxy_set_header l5d-dst-override $service_name.$namespace.svc.cluster.local:9898;
           proxy_hide_header l5d-remote-ip;
           proxy_hide_header l5d-server-id;</span>
-      <span class="token key atrule">path</span><span class="token punctuation">:</span> /
-      <span class="token key atrule">hosts</span><span class="token punctuation">:</span>
-        <span class="token punctuation">-</span> *
 </code></pre></div><p>Apply changes:</p> <div class="language-sh extra-class"><pre class="language-sh"><code><span class="token function">git</span> <span class="token function">add</span> -A <span class="token operator">&amp;&amp;</span> <span class="token punctuation">\</span>
 <span class="token function">git</span> commit -m <span class="token string">&quot;install podinfo&quot;</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">\</span>
 <span class="token function">git</span> push origin master <span class="token operator">&amp;&amp;</span> <span class="token punctuation">\</span>
 fluxctl <span class="token function">sync</span>
 </code></pre></div><p>Validate that the Helm operator has installed podinfo:</p> <div class="language-sh extra-class"><pre class="language-sh"><code>kubectl -n prod get hr
-</code></pre></div><p>Open your browser and navigate to <code>http://&lt;LB-IP&gt;/</code>, you should see podinfo v2.1.0 UI.</p> <p><img src="/podinfo-2.1.0.png" alt="v2.1.0"></p> <h2 id="automated-upgrade"><a href="#automated-upgrade" aria-hidden="true" class="header-anchor">#</a> Automated upgrade</h2> <p>Flux can be used to automate container image updates in your cluster.
+</code></pre></div><p>Open your browser and navigate to <code>http://&lt;LB-IP&gt;/</code>, you should see podinfo v3.0.0 UI.</p> <p><img src="/podinfo-2.1.0.png" alt="v2.1.0"></p> <h2 id="automated-upgrade"><a href="#automated-upgrade" aria-hidden="true" class="header-anchor">#</a> Automated upgrade</h2> <p>Flux can be used to automate container image updates in your cluster.
 You can enable the automate image tag updates by annotating Helm release objects.
 You can also control what tags should be considered for an
 update by using glob, regex or semantic version expressions.</p> <p>Edit the podinfo Helm release and enable Flux automated image updates:</p> <div class="language-yaml extra-class"><div class="highlight-lines"><br><br><br><br><div class="highlighted"> </div><div class="highlighted"> </div><br></div><pre class="language-yaml"><code><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> helm.fluxcd.io/v1
@@ -99,12 +96,12 @@ update by using glob, regex or semantic version expressions.</p> <p>Edit the pod
 <span class="token key atrule">metadata</span><span class="token punctuation">:</span>
   <span class="token key atrule">annotations</span><span class="token punctuation">:</span>
     <span class="token key atrule">fluxcd.io/automated</span><span class="token punctuation">:</span> <span class="token string">&quot;true&quot;</span>
-    <span class="token key atrule">fluxcd.io/tag.chart-image</span><span class="token punctuation">:</span> semver<span class="token punctuation">:</span>~2.1
+    <span class="token key atrule">fluxcd.io/tag.chart-image</span><span class="token punctuation">:</span> semver<span class="token punctuation">:</span>~3.0
 </code></pre></div><p>Commit and push the changes to GitHub:</p> <div class="language-sh extra-class"><pre class="language-sh"><code><span class="token function">git</span> <span class="token function">add</span> -A <span class="token operator">&amp;&amp;</span> <span class="token function">git</span> commit -m <span class="token string">&quot;automate podinfo&quot;</span> <span class="token operator">&amp;&amp;</span> <span class="token function">git</span> push origin master
 </code></pre></div><p>Sync the the changes on the cluster:</p> <div class="language-sh extra-class"><pre class="language-sh"><code>fluxctl <span class="token function">sync</span>
 </code></pre></div><p>Validate that the Helm operator has upgraded podinfo:</p> <div class="language-sh extra-class"><pre class="language-sh"><code>kubectl -n prod get hr
 </code></pre></div><p>Pull the changes made by Flux locally:</p> <div class="language-sh extra-class"><pre class="language-sh"><code><span class="token function">git</span> pull origin master
-</code></pre></div><p>Open your browser and navigate to <code>http://&lt;LB-IP&gt;/</code>, you should see podinfo v2.1.3 UI.</p> <p><img src="/podinfo-2.1.3.png" alt="v2.1.3"></p> <h2 id="sealed-secrets"><a href="#sealed-secrets" aria-hidden="true" class="header-anchor">#</a> Sealed secrets</h2> <p>In order to store secrets safely in a public Git repo you can use the
+</code></pre></div><p>Open your browser and navigate to <code>http://&lt;LB-IP&gt;/</code>, you should see podinfo v3.0.5 UI.</p> <p><img src="/podinfo-2.1.3.png" alt="v2.1.3"></p> <h2 id="sealed-secrets"><a href="#sealed-secrets" aria-hidden="true" class="header-anchor">#</a> Sealed secrets</h2> <p>In order to store secrets safely in a public Git repo you can use the
 <a href="https://github.com/bitnami-labs/sealed-secrets" target="_blank" rel="noopener noreferrer">Sealed Secrets controller<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>
 and encrypt your Kubernetes Secrets into <strong>SealedSecrets</strong>.
 The sealed secret can be decrypted only by the controller running in your cluster.</p> <p>Create the Sealed Secrets Helm release:</p> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> helm.fluxcd.io/v1
@@ -153,6 +150,6 @@ kubectl delete pod -n fluxcd -l <span class="token assign-left variable">app</sp
         </a>
         →
       </span></p></div> </main></div><div class="global-ui"></div></div>
-    <script src="/assets/js/app.fb091873.js" defer></script><script src="/assets/js/2.795534d9.js" defer></script><script src="/assets/js/7.9b57361a.js" defer></script>
+    <script src="/assets/js/app.8963f6d7.js" defer></script><script src="/assets/js/2.795534d9.js" defer></script><script src="/assets/js/7.42787d3a.js" defer></script>
   </body>
 </html>
