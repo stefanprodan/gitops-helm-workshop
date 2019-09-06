@@ -196,8 +196,37 @@ $ kubectl -n linkerd logs deployment/flagger -f | jq .msg
  Canary failed! Scaling down podinfo.test
 ```
 
+## Monitoring with Linkerd
 
+The Linkerd dashboard provides a high level view of what is happening with your services in real time.
+It can be used to visualize service dependencies, traffic splitting and understand the health of specific service routes.
 
+Open the dashboard by running:
 
+```sh
+linkerd dashboard --port=50750
+```
+
+During the canary analysis, navigate to:
+
+```
+http://127.0.0.1:50750/namespaces/ingress-nginx/deployments/nginx-ingress-controller
+```
+
+![linkerd](/linkerd-dashboard.png)
+
+You can monitor the live traffic for the production namespace from the command line with:
+
+```sh
+linkerd -n prod top deploy
+```
+
+And you can view all the routes exposed by podinfo with:
+
+```sh
+linkerd -n prod routes service/podinfo
+```
+
+The above routes have been generated from the podinfo swagger spec and exported as Linkerd service profile.
 
 

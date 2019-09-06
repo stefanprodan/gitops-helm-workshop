@@ -42,7 +42,7 @@ spec:
   chart:
     repository: https://kubernetes-charts.storage.googleapis.com/
     name: nginx-ingress
-    version: 1.16.0
+    version: 1.19.0
   values:
     controller:
       service:
@@ -137,7 +137,7 @@ kubectl -n prod get hr
 
 Open your browser and navigate to `http://<LB-IP>/`, you should see podinfo v3.0.0 UI.
 
-![v2.1.0](/podinfo-3.0.0.png)
+![podinfo](/podinfo-3.0.0.png)
 
 ## Automated upgrade
 
@@ -183,7 +183,7 @@ git pull origin master
 
 Open your browser and navigate to `http://<LB-IP>/`, you should see podinfo v3.0.5 UI.
 
-![v2.1.3](/podinfo-3.0.5.png)
+![podinfo](/podinfo-3.0.5.png)
 
 ## Sealed secrets
 
