@@ -46,4 +46,7 @@ workflows:
   version: 2
   gh-pages:
     jobs:
-      - push-gh-pages
+      - push-gh-pages:
+          filters:
+            branches:
+              only: master

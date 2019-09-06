@@ -106,7 +106,7 @@ spec:
   values:
     image:
       repository: stefanprodan/podinfo
-      tag: 2.1.0
+      tag: 3.0.0
     service:
       enabled: true
       type: ClusterIP
@@ -118,9 +118,6 @@ spec:
           proxy_set_header l5d-dst-override $service_name.$namespace.svc.cluster.local:9898;
           proxy_hide_header l5d-remote-ip;
           proxy_hide_header l5d-server-id;
-      path: /
-      hosts:
-        - *
 ```
 
 Apply changes:
@@ -138,9 +135,9 @@ Validate that the Helm operator has installed podinfo:
 kubectl -n prod get hr
 ```
 
-Open your browser and navigate to `http://<LB-IP>/`, you should see podinfo v2.1.0 UI.
+Open your browser and navigate to `http://<LB-IP>/`, you should see podinfo v3.0.0 UI.
 
-![v2.1.0](/podinfo-2.1.0.png)
+![v2.1.0](/podinfo-3.0.0.png)
 
 ## Automated upgrade
 
@@ -157,7 +154,7 @@ kind: HelmRelease
 metadata:
   annotations:
     fluxcd.io/automated: "true"
-    fluxcd.io/tag.chart-image: semver:~2.1
+    fluxcd.io/tag.chart-image: semver:~3.0
 ```
 
 Commit and push the changes to GitHub:
@@ -184,9 +181,9 @@ Pull the changes made by Flux locally:
 git pull origin master
 ```
 
-Open your browser and navigate to `http://<LB-IP>/`, you should see podinfo v2.1.3 UI.
+Open your browser and navigate to `http://<LB-IP>/`, you should see podinfo v3.0.5 UI.
 
-![v2.1.3](/podinfo-2.1.3.png)
+![v2.1.3](/podinfo-3.0.5.png)
 
 ## Sealed secrets
 
