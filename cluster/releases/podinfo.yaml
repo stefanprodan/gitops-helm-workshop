@@ -29,6 +29,6 @@ spec:
           proxy_set_header l5d-dst-override $service_name.$namespace.svc.cluster.local:9898;
           proxy_hide_header l5d-remote-ip;
           proxy_hide_header l5d-server-id;
-      path: /*
+      path: /
       hosts:
-        - podinfo.local
+        - 35.198.97.122.nip.io
