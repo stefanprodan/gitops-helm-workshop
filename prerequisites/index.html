@@ -8,7 +8,7 @@
     <link rel="icon" href="/favicon.png">
   <link rel="stylesheet" href="/website.css">
     
-    <link rel="preload" href="/assets/css/0.styles.a0ada997.css" as="style"><link rel="preload" href="/assets/js/app.8c99ddf9.js" as="script"><link rel="preload" href="/assets/js/2.795534d9.js" as="script"><link rel="preload" href="/assets/js/9.c5a82796.js" as="script"><link rel="prefetch" href="/assets/js/10.b9cf34e5.js"><link rel="prefetch" href="/assets/js/11.d53eb7de.js"><link rel="prefetch" href="/assets/js/3.0c89a451.js"><link rel="prefetch" href="/assets/js/4.e2e0255b.js"><link rel="prefetch" href="/assets/js/5.653dd45a.js"><link rel="prefetch" href="/assets/js/6.4d6328bc.js"><link rel="prefetch" href="/assets/js/7.da22ae99.js"><link rel="prefetch" href="/assets/js/8.70f4a645.js">
+    <link rel="preload" href="/assets/css/0.styles.a0ada997.css" as="style"><link rel="preload" href="/assets/js/app.6c8782ce.js" as="script"><link rel="preload" href="/assets/js/2.795534d9.js" as="script"><link rel="preload" href="/assets/js/9.183eebc5.js" as="script"><link rel="prefetch" href="/assets/js/10.d4bff290.js"><link rel="prefetch" href="/assets/js/11.d53eb7de.js"><link rel="prefetch" href="/assets/js/3.0c89a451.js"><link rel="prefetch" href="/assets/js/4.e2e0255b.js"><link rel="prefetch" href="/assets/js/5.653dd45a.js"><link rel="prefetch" href="/assets/js/6.4d6328bc.js"><link rel="prefetch" href="/assets/js/7.da22ae99.js"><link rel="prefetch" href="/assets/js/8.70f4a645.js">
     <link rel="stylesheet" href="/assets/css/0.styles.a0ada997.css">
   </head>
   <body>
@@ -45,7 +45,7 @@ and clone it locally (replace the <code>GHUSER</code> value with your GitHub use
 --set git.pollInterval<span class="token operator">=</span>1m <span class="token punctuation">\</span>
 --set git.url<span class="token operator">=</span>git@github.com:<span class="token variable">${GHUSER}</span>/gitops-helm-workshop
 </code></pre></div><p>Install fluxctl:</p> <div class="language-sh extra-class"><pre class="language-sh"><code><span class="token comment"># macOS and linux</span>
-<span class="token function">curl</span> -sL https://deploy-preview-11--fluxcd.netlify.com/install <span class="token operator">|</span> <span class="token function">sh</span>
+<span class="token function">curl</span> -sL https://fluxcd.io/install <span class="token operator">|</span> <span class="token function">sh</span>
 <span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span><span class="token environment constant">$PATH</span><span class="token builtin class-name">:</span><span class="token environment constant">$HOME</span>/.fluxcd/bin
 
 <span class="token comment"># windows</span>
@@ -80,7 +80,6 @@ https://github.com/linkerd/linkerd2/releases
 </code></pre></div><p>Install Flagger's Canary CRD:</p> <div class="language-sh extra-class"><pre class="language-sh"><code>kubectl apply -f https://raw.githubusercontent.com/weaveworks/flagger/master/artifacts/flagger/crd.yaml
 </code></pre></div><p>Install Flagger in the <code>linkerd</code> namespace:</p> <div class="language-sh extra-class"><pre class="language-sh"><code>helmv3 upgrade -i flagger flagger/flagger --wait <span class="token punctuation">\</span>
 --namespace linkerd <span class="token punctuation">\</span>
---set crd.create<span class="token operator">=</span>false <span class="token punctuation">\</span>
 --set <span class="token assign-left variable">metricsServer</span><span class="token operator">=</span>http://linkerd-prometheus:9090 <span class="token punctuation">\</span>
 --set <span class="token assign-left variable">meshProvider</span><span class="token operator">=</span>linkerd
 </code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
@@ -92,6 +91,6 @@ https://github.com/linkerd/linkerd2/releases
         </a>
         →
       </span></p></div> </main></div><div class="global-ui"></div></div>
-    <script src="/assets/js/app.8c99ddf9.js" defer></script><script src="/assets/js/2.795534d9.js" defer></script><script src="/assets/js/9.c5a82796.js" defer></script>
+    <script src="/assets/js/app.6c8782ce.js" defer></script><script src="/assets/js/2.795534d9.js" defer></script><script src="/assets/js/9.183eebc5.js" defer></script>
   </body>
 </html>
