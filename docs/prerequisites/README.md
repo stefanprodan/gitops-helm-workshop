@@ -91,7 +91,7 @@ Install fluxctl:
 
 ```sh
 # macOS and linux
-curl -sL https://deploy-preview-11--fluxcd.netlify.com/install | sh
+curl -sL https://fluxcd.io/install | sh
 export PATH=$PATH:$HOME/.fluxcd/bin
 
 # windows
@@ -179,7 +179,6 @@ Install Flagger in the `linkerd` namespace:
 ```sh
 helmv3 upgrade -i flagger flagger/flagger --wait \
 --namespace linkerd \
---set crd.create=false \
 --set metricsServer=http://linkerd-prometheus:9090 \
 --set meshProvider=linkerd
 ```
