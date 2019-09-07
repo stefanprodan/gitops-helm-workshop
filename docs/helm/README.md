@@ -17,7 +17,7 @@ The controller will run inside the Linkerd mesh.
 
 Create a namespace with linkerd injection enabled:
 
-```yaml
+```yaml{5}
 apiVersion: v1
 kind: Namespace
 metadata:
@@ -29,7 +29,7 @@ metadata:
 
 Create a Helm release to install the NGINX ingress controller:
 
-```yaml
+```yaml{7}
 apiVersion: helm.fluxcd.io/v1
 kind: HelmRelease
 metadata:
@@ -77,7 +77,7 @@ You'll be installing podinfo using a Helm chart stored in the git repository at 
 
 Create the `prod` namespace with linkerd injection enabled:
 
-```yaml
+```yaml{5}
 apiVersion: v1
 kind: Namespace
 metadata:
@@ -87,9 +87,10 @@ metadata:
   name: prod
 ```
 
-Create a Helm release to install the podinfo chart (replace `GHUSER` with your GitHub username):
+Create a Helm release to install the podinfo chart
+(replace `GHUSER` with your GitHub username and `LB-PUBLIC-IP` with your ingress IP):
 
-```yaml
+```yaml{7,11,31}
 apiVersion: helm.fluxcd.io/v1
 kind: HelmRelease
 metadata:
@@ -118,6 +119,15 @@ spec:
           proxy_set_header l5d-dst-override $service_name.$namespace.svc.cluster.local:9898;
           proxy_hide_header l5d-remote-ip;
           proxy_hide_header l5d-server-id;
+      path: /
+      hosts:
+        - LB-PUBLIC-IP.nip.io
+```
+
+Note that if you are on EKS, the host should be set to the `elb.amazonaws.com` address:
+
+```sh
+kubectl ingress-nginx get svc | grep Ingress
 ```
 
 Apply changes:
@@ -135,7 +145,7 @@ Validate that the Helm operator has installed podinfo:
 kubectl -n prod get hr
 ```
 
-Open your browser and navigate to `http://<LB-IP>/`, you should see podinfo v3.0.0 UI.
+Open your browser and navigate to `http://LB-PUBLIC-IP.nip.io/`, you should see podinfo v3.0.0 UI.
 
 ![podinfo](/podinfo-3.0.0.png)
 
@@ -157,15 +167,12 @@ metadata:
     fluxcd.io/tag.chart-image: semver:~3.0
 ```
 
-Commit and push the changes to GitHub:
+Apply changes:
 
 ```sh
-git add -A && git commit -m "automate podinfo" && git push origin master
-```
-
-Sync the the changes on the cluster:
-
-```sh
+git add -A && \
+git commit -m "automate podinfo" && \
+git push origin master && \
 fluxctl sync
 ```
 
@@ -181,7 +188,7 @@ Pull the changes made by Flux locally:
 git pull origin master
 ```
 
-Open your browser and navigate to `http://<LB-IP>/`, you should see podinfo v3.0.5 UI.
+Open your browser and navigate to `http://LB-PUBLIC-IP.nip.io/`, you should see podinfo v3.0.5 UI.
 
 ![podinfo](/podinfo-3.0.5.png)
 
@@ -194,7 +201,7 @@ The sealed secret can be decrypted only by the controller running in your cluste
 
 Create the Sealed Secrets Helm release:
 
-```yaml
+```yaml{7}
 apiVersion: helm.fluxcd.io/v1
 kind: HelmRelease
 metadata:
@@ -207,7 +214,7 @@ spec:
   chart:
     repository: https://kubernetes-charts.storage.googleapis.com/
     name: sealed-secrets
-    version: 1.3.4
+    version: 1.4.0
 ```
 
 Apply changes:
@@ -241,7 +248,7 @@ kubeseal --fetch-cert \
 You can generate a Kubernetes secret locally with kubectl and encrypt it with kubeseal:
 
 ```sh
-kubectl -n dev create secret generic basic-auth \
+kubectl -n prod create secret generic basic-auth \
 --from-literal=user=admin \
 --from-literal=password=admin \
 --dry-run \
@@ -258,7 +265,8 @@ then decrypt it into a Kubernetes secret.
 To prepare for disaster recovery you should backup the Sealed Secrets controller private key with:
 
 ```sh
-kubectl get secret -n fluxcd sealed-secrets-key -o yaml --export > sealed-secrets-key.yaml
+kubectl get secret -n fluxcd sealed-secrets-key -o yaml \
+--export > sealed-secrets-key.yaml
 ```
 
 To restore from backup after a disaster, replace the newly-created secret and restart the controller:
