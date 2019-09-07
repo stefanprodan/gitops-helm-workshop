@@ -1,3 +1,4 @@
+---
 apiVersion: helm.fluxcd.io/v1
 kind: HelmRelease
 metadata:
@@ -6,17 +7,17 @@ metadata:
   annotations:
     fluxcd.io/ignore: "true"
     fluxcd.io/automated: "false"
-    fluxcd.io/tag.chart-image: semver:~2.1
+    fluxcd.io/tag.chart-image: semver:~3.0
 spec:
   releaseName: podinfo
   chart:
     git: git@github.com:stefanprodan/gitops-helm-workshop
-    ref: master
+    ref: test
     path: cluster/charts/podinfo
   values:
     image:
       repository: stefanprodan/podinfo
-      tag: 2.1.0
+      tag: 3.0.0
     service:
       enabled: true
       type: ClusterIP
@@ -30,4 +31,4 @@ spec:
           proxy_hide_header l5d-server-id;
       path: /
       hosts:
-        - *
+      - 35.198.97.122.nip.io

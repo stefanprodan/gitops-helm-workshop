@@ -40,12 +40,14 @@ fluxctl sync
 
 Create a canary release for podinfo:
 
-```yaml
+```yaml{7}
 apiVersion: flagger.app/v1alpha3
 kind: Canary
 metadata:
   name: podinfo
   namespace: prod
+  annotations:
+    fluxcd.io/ignore: "false"
 spec:
   targetRef:
     apiVersion: apps/v1
@@ -90,7 +92,7 @@ kubectl -n prod get canary
 
 Install the load testing service to generate traffic during the canary analysis:
 
-```yaml
+```yaml{7}
 apiVersion: helm.fluxcd.io/v1
 kind: HelmRelease
 metadata:
