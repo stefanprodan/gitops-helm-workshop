@@ -9,6 +9,7 @@ metadata:
     fluxcd.io/tag.chart-image: semver:~3.0
 spec:
   releaseName: podinfo
+  helmVersion: v3
   chart:
     git: git@github.com:stefanprodan/gitops-helm-workshop
     ref: test
