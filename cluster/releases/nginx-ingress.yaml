@@ -10,8 +10,15 @@ spec:
   chart:
     repository: https://kubernetes-charts.storage.googleapis.com/
     name: nginx-ingress
-    version: 1.16.0
+    version: 1.19.0
   values:
     controller:
       service:
         type: LoadBalancer
+      metrics:
+        enabled: true
+      podAnnotations:
+        prometheus.io/port: 10254
+        prometheus.io/scrape: true
+      stats:
+        enabled: true

@@ -6,7 +6,7 @@ metadata:
   annotations:
     fluxcd.io/ignore: "true"
     fluxcd.io/automated: "false"
-    fluxcd.io/tag.chart-image: semver:~2.1
+    fluxcd.io/tag.chart-image: semver:~3.0
 spec:
   releaseName: podinfo
   chart:
@@ -16,18 +16,16 @@ spec:
   values:
     image:
       repository: stefanprodan/podinfo
-      tag: 2.1.0
+      tag: 3.0.0
     service:
       enabled: true
       type: ClusterIP
     ingress:
-      enabled: true
+      enabled: false
       annotations:
         kubernetes.io/ingress.class: "nginx"
         nginx.ingress.kubernetes.io/configuration-snippet: |
           proxy_set_header l5d-dst-override $service_name.$namespace.svc.cluster.local:9898;
           proxy_hide_header l5d-remote-ip;
           proxy_hide_header l5d-server-id;
-      path: /
-      hosts:
-        - *
+      path: /*
