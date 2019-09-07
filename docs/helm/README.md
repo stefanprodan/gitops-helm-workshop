@@ -127,7 +127,7 @@ spec:
 Note that if you are on EKS, the host should be set to the `elb.amazonaws.com` address:
 
 ```sh
-kubectl ingress-nginx get svc | grep Ingress
+kubectl -n ingress-nginx get svc | grep Ingress
 ```
 
 Apply changes:

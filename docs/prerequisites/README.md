@@ -21,12 +21,16 @@ curl -sSL "https://get.helm.sh/helm-v3.0.0-beta.3-${OS}.tar.gz" | tar xvz && \
 chmod +x ${OS}/helm && mv ${OS}/helm $HOME/.helm3/bin/helmv3
 ```
 
-Add it to your path and set Helm home:
+Add the helmv3 binary to your path and set Helm home:
 
 ```sh
 export PATH=$PATH:$HOME/.helm3/bin
 export HELM_HOME=$HOME/.helm3
+```
 
+Verify the installation with:
+
+```sh
 helmv3 version
 ```
 
@@ -86,12 +90,12 @@ helmv3 upgrade -i flux fluxcd/flux --wait \
 Install fluxctl:
 
 ```sh
-# macOS
-brew install fluxctl
-# linux
-sudo snap install fluxctl --edge
+# macOS and linux
+curl -sL https://deploy-preview-11--fluxcd.netlify.com/install | sh
+export PATH=$PATH:$HOME/.fluxcd/bin
+
 # windows
-https://github.com/fluxcd/flux/releases/download/1.13.3/fluxctl_windows_amd64
+https://github.com/fluxcd/flux/releases
 ```
 
 Find the Git SSH public key:
@@ -136,8 +140,12 @@ helmv3 upgrade -i helm-operator fluxcd/helm-operator --wait \
 Download the Linkerd v2 CLI:
 
 ```sh
+# macOS and linux
 curl -sL https://run.linkerd.io/install | sh
 export PATH=$PATH:$HOME/.linkerd2/bin
+
+# windows
+https://github.com/linkerd/linkerd2/releases
 ```
 
 Install the Linkerd control plane in the `linkerd` namespace:
