@@ -1,6 +1,6 @@
 module.exports = {
-    title: 'GitOps Workshop',
-    description: 'Progressive Delivery for Kubernetes with Flux, Helm, Linkerd and Flagger',
+    title: 'GitOps Helm Workshop',
+    description: 'Progressive Delivery for Kubernetes with Flux, Helm v3, Linkerd and Flagger',
     themeConfig: {
         displayAllHeaders: true,
         repo: 'stefanprodan/gitops-helm-workshop',

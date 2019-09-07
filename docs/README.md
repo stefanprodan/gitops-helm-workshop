@@ -1,5 +1,5 @@
 ---
-title: GitOps Workshop
+title: GitOps Helm Workshop
 meta:
   - name: keywords
     content: gitops kubernetes helm fluxcd linkerd flagger
