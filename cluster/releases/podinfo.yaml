@@ -30,3 +30,5 @@ spec:
           proxy_hide_header l5d-remote-ip;
           proxy_hide_header l5d-server-id;
       path: /*
+      hosts:
+        - podinfo.local
