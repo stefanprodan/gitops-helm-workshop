@@ -21,6 +21,15 @@ curl -sSL "https://get.helm.sh/helm-v3.0.0-beta.3-${OS}.tar.gz" | tar xvz && \
 chmod +x ${OS}/helm && mv ${OS}/helm $HOME/.helm3/bin/helmv3
 ```
 
+Add it to your path and set Helm home:
+
+```sh
+export PATH=$PATH:$HOME/.helm3/bin
+export HELM_HOME=$HOME/.helm3
+
+helmv3 version
+```
+
 ## Git
 
 Fork the [workshop](https://github.com/stefanprodan/gitops-helm-workshop) repository
