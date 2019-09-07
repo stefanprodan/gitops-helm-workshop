@@ -4,14 +4,14 @@ metadata:
   name: podinfo
   namespace: prod
   annotations:
-    fluxcd.io/ignore: "true"
+    fluxcd.io/ignore: "false"
     fluxcd.io/automated: "false"
     fluxcd.io/tag.chart-image: semver:~3.0
 spec:
   releaseName: podinfo
   chart:
     git: git@github.com:stefanprodan/gitops-helm-workshop
-    ref: master
+    ref: test
     path: cluster/charts/podinfo
   values:
     image:
