@@ -55,13 +55,11 @@ spec:
   releaseName: helm-tester
   chart:
     git: https://github.com/weaveworks/flagger
-    ref: 0.18.2
+    ref: 0.18.4
     path: charts/loadtester
   values:
     fullnameOverride: helm-tester
     serviceAccountName: helm-tester
-    image:
-      tag: 0.8.0-helm.3
 ```
 
 Apply changes:
