@@ -8,7 +8,7 @@
     <link rel="icon" href="/favicon.png">
   <link rel="stylesheet" href="/website.css">
     
-    <link rel="preload" href="/assets/css/0.styles.a0ada997.css" as="style"><link rel="preload" href="/assets/js/app.74f61eb9.js" as="script"><link rel="preload" href="/assets/js/2.795534d9.js" as="script"><link rel="preload" href="/assets/js/10.95f5c36c.js" as="script"><link rel="prefetch" href="/assets/js/11.d53eb7de.js"><link rel="prefetch" href="/assets/js/3.0c89a451.js"><link rel="prefetch" href="/assets/js/4.e2e0255b.js"><link rel="prefetch" href="/assets/js/5.653dd45a.js"><link rel="prefetch" href="/assets/js/6.4d6328bc.js"><link rel="prefetch" href="/assets/js/7.da22ae99.js"><link rel="prefetch" href="/assets/js/8.70f4a645.js"><link rel="prefetch" href="/assets/js/9.183eebc5.js">
+    <link rel="preload" href="/assets/css/0.styles.a0ada997.css" as="style"><link rel="preload" href="/assets/js/app.918e3209.js" as="script"><link rel="preload" href="/assets/js/2.795534d9.js" as="script"><link rel="preload" href="/assets/js/10.2066859f.js" as="script"><link rel="prefetch" href="/assets/js/11.d53eb7de.js"><link rel="prefetch" href="/assets/js/3.0c89a451.js"><link rel="prefetch" href="/assets/js/4.e2e0255b.js"><link rel="prefetch" href="/assets/js/5.653dd45a.js"><link rel="prefetch" href="/assets/js/6.1b687bdf.js"><link rel="prefetch" href="/assets/js/7.da22ae99.js"><link rel="prefetch" href="/assets/js/8.70f4a645.js"><link rel="prefetch" href="/assets/js/9.183eebc5.js">
     <link rel="stylesheet" href="/assets/css/0.styles.a0ada997.css">
   </head>
   <body>
@@ -42,7 +42,7 @@
       <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> PODINFO_SVC
         <span class="token key atrule">value</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">{</span> template &quot;podinfo.fullname&quot; . <span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">:</span><span class="token punctuation">{</span><span class="token punctuation">{</span> .Values.service.externalPort <span class="token punctuation">}</span><span class="token punctuation">}</span>
   <span class="token key atrule">restartPolicy</span><span class="token punctuation">:</span> Never
-</code></pre></div><p>Save the above file in <code>cluster/charts/podinfo/tests</code>.</p> <p>Deploy the Helm test runner in the <code>prod</code> namespace:</p> <div class="language-yaml extra-class"><div class="highlight-lines"><br><br><br><br><br><br><div class="highlighted"> </div><br><br><br><br><br><br><br><br><br><br><br><br></div><pre class="language-yaml"><code><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> helm.fluxcd.io/v1
+</code></pre></div><p>Save the above file in <code>cluster/charts/podinfo/tests</code>.</p> <p>Deploy the Helm test runner in the <code>prod</code> namespace:</p> <div class="language-yaml extra-class"><div class="highlight-lines"><br><br><br><br><br><br><div class="highlighted"> </div><br><br><br><br><br><br><br><br><br><br></div><pre class="language-yaml"><code><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> helm.fluxcd.io/v1
 <span class="token key atrule">kind</span><span class="token punctuation">:</span> HelmRelease
 <span class="token key atrule">metadata</span><span class="token punctuation">:</span>
   <span class="token key atrule">name</span><span class="token punctuation">:</span> helm<span class="token punctuation">-</span>tester
@@ -53,13 +53,11 @@
   <span class="token key atrule">releaseName</span><span class="token punctuation">:</span> helm<span class="token punctuation">-</span>tester
   <span class="token key atrule">chart</span><span class="token punctuation">:</span>
     <span class="token key atrule">git</span><span class="token punctuation">:</span> https<span class="token punctuation">:</span>//github.com/weaveworks/flagger
-    <span class="token key atrule">ref</span><span class="token punctuation">:</span> 0.18.2
+    <span class="token key atrule">ref</span><span class="token punctuation">:</span> 0.18.4
     <span class="token key atrule">path</span><span class="token punctuation">:</span> charts/loadtester
   <span class="token key atrule">values</span><span class="token punctuation">:</span>
     <span class="token key atrule">fullnameOverride</span><span class="token punctuation">:</span> helm<span class="token punctuation">-</span>tester
     <span class="token key atrule">serviceAccountName</span><span class="token punctuation">:</span> helm<span class="token punctuation">-</span>tester
-    <span class="token key atrule">image</span><span class="token punctuation">:</span>
-      <span class="token key atrule">tag</span><span class="token punctuation">:</span> 0.8.0<span class="token punctuation">-</span>helm.3
 </code></pre></div><p>Apply changes:</p> <div class="language-sh extra-class"><pre class="language-sh"><code><span class="token function">git</span> <span class="token function">add</span> -A <span class="token operator">&amp;&amp;</span> <span class="token punctuation">\</span>
 <span class="token function">git</span> commit -m <span class="token string">&quot;update podinfo&quot;</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">\</span>
 <span class="token function">git</span> push origin master <span class="token operator">&amp;&amp;</span> <span class="token punctuation">\</span>
@@ -93,6 +91,6 @@ If the helm test fails, Flagger will retry until the analysis threshold is reach
         <a href="/canary/" class="prev">
           Canary Releases
         </a></span> <!----></p></div> </main></div><div class="global-ui"></div></div>
-    <script src="/assets/js/app.74f61eb9.js" defer></script><script src="/assets/js/2.795534d9.js" defer></script><script src="/assets/js/10.95f5c36c.js" defer></script>
+    <script src="/assets/js/app.918e3209.js" defer></script><script src="/assets/js/2.795534d9.js" defer></script><script src="/assets/js/10.2066859f.js" defer></script>
   </body>
 </html>
