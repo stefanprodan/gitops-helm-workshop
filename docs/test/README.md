@@ -10,7 +10,7 @@ Flagger comes with a testing service that can run Helm tests when configured as 
 
 Create a test for the podinfo token API:
 
-```yaml
+```yaml{11}
 apiVersion: v1
 kind: Pod
 metadata:
@@ -43,7 +43,7 @@ Save the above file in `cluster/charts/podinfo/tests`.
 
 Deploy the Helm test runner in the `prod` namespace:
 
-```yaml
+```yaml{7}
 apiVersion: helm.fluxcd.io/v1
 kind: HelmRelease
 metadata:
@@ -60,6 +60,8 @@ spec:
   values:
     fullnameOverride: helm-tester
     serviceAccountName: helm-tester
+    image:
+      tag: 0.8.0-helm.3
 ```
 
 Apply changes:
@@ -89,8 +91,8 @@ spec:
         url: http://helm-tester.prod/
         timeout: 2m
         metadata:
-          type: "helm"
-          cmd: "test podinfo --cleanup"
+          type: "helmv3"
+          cmd: "test run podinfo --cleanup -n prod"
       - name: load-test
         url: http://load-tester.prod/
         metadata:

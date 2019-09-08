@@ -14,3 +14,5 @@ spec:
   values:
     fullnameOverride: helm-tester
     serviceAccountName: helm-tester
+    image:
+      tag: 0.8.0-helm.3
