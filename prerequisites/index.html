@@ -8,7 +8,7 @@
     <link rel="icon" href="/favicon.png">
   <link rel="stylesheet" href="/website.css">
     
-    <link rel="preload" href="/assets/css/0.styles.a0ada997.css" as="style"><link rel="preload" href="/assets/js/app.918e3209.js" as="script"><link rel="preload" href="/assets/js/2.795534d9.js" as="script"><link rel="preload" href="/assets/js/9.183eebc5.js" as="script"><link rel="prefetch" href="/assets/js/10.2066859f.js"><link rel="prefetch" href="/assets/js/11.d53eb7de.js"><link rel="prefetch" href="/assets/js/3.0c89a451.js"><link rel="prefetch" href="/assets/js/4.e2e0255b.js"><link rel="prefetch" href="/assets/js/5.653dd45a.js"><link rel="prefetch" href="/assets/js/6.1b687bdf.js"><link rel="prefetch" href="/assets/js/7.da22ae99.js"><link rel="prefetch" href="/assets/js/8.70f4a645.js">
+    <link rel="preload" href="/assets/css/0.styles.a0ada997.css" as="style"><link rel="preload" href="/assets/js/app.beefc28a.js" as="script"><link rel="preload" href="/assets/js/2.795534d9.js" as="script"><link rel="preload" href="/assets/js/9.ad36659b.js" as="script"><link rel="prefetch" href="/assets/js/10.3e2cafea.js"><link rel="prefetch" href="/assets/js/11.d53eb7de.js"><link rel="prefetch" href="/assets/js/3.0c89a451.js"><link rel="prefetch" href="/assets/js/4.e2e0255b.js"><link rel="prefetch" href="/assets/js/5.653dd45a.js"><link rel="prefetch" href="/assets/js/6.1b687bdf.js"><link rel="prefetch" href="/assets/js/7.da22ae99.js"><link rel="prefetch" href="/assets/js/8.e36f94ce.js">
     <link rel="stylesheet" href="/assets/css/0.styles.a0ada997.css">
   </head>
   <body>
@@ -80,6 +80,7 @@ https://github.com/linkerd/linkerd2/releases
 </code></pre></div><p>Install Flagger's Canary CRD:</p> <div class="language-sh extra-class"><pre class="language-sh"><code>kubectl apply -f https://raw.githubusercontent.com/weaveworks/flagger/master/artifacts/flagger/crd.yaml
 </code></pre></div><p>Install Flagger in the <code>linkerd</code> namespace:</p> <div class="language-sh extra-class"><pre class="language-sh"><code>helmv3 upgrade -i flagger flagger/flagger --wait <span class="token punctuation">\</span>
 --namespace linkerd <span class="token punctuation">\</span>
+--set crd.create<span class="token operator">=</span>false <span class="token punctuation">\</span>
 --set <span class="token assign-left variable">metricsServer</span><span class="token operator">=</span>http://linkerd-prometheus:9090 <span class="token punctuation">\</span>
 --set <span class="token assign-left variable">meshProvider</span><span class="token operator">=</span>linkerd
 </code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
@@ -91,6 +92,6 @@ https://github.com/linkerd/linkerd2/releases
         </a>
         →
       </span></p></div> </main></div><div class="global-ui"></div></div>
-    <script src="/assets/js/app.918e3209.js" defer></script><script src="/assets/js/2.795534d9.js" defer></script><script src="/assets/js/9.183eebc5.js" defer></script>
+    <script src="/assets/js/app.beefc28a.js" defer></script><script src="/assets/js/2.795534d9.js" defer></script><script src="/assets/js/9.ad36659b.js" defer></script>
   </body>
 </html>
