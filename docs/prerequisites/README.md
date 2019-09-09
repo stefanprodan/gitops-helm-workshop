@@ -179,6 +179,7 @@ Install Flagger in the `linkerd` namespace:
 ```sh
 helmv3 upgrade -i flagger flagger/flagger --wait \
 --namespace linkerd \
+--set crd.create=false \
 --set metricsServer=http://linkerd-prometheus:9090 \
 --set meshProvider=linkerd
 ```
