@@ -8,7 +8,7 @@
     <link rel="icon" href="/favicon.png">
   <link rel="stylesheet" href="/website.css">
     
-    <link rel="preload" href="/assets/css/0.styles.a0ada997.css" as="style"><link rel="preload" href="/assets/js/app.beefc28a.js" as="script"><link rel="preload" href="/assets/js/2.795534d9.js" as="script"><link rel="preload" href="/assets/js/10.3e2cafea.js" as="script"><link rel="prefetch" href="/assets/js/11.d53eb7de.js"><link rel="prefetch" href="/assets/js/3.0c89a451.js"><link rel="prefetch" href="/assets/js/4.e2e0255b.js"><link rel="prefetch" href="/assets/js/5.653dd45a.js"><link rel="prefetch" href="/assets/js/6.1b687bdf.js"><link rel="prefetch" href="/assets/js/7.da22ae99.js"><link rel="prefetch" href="/assets/js/8.e36f94ce.js"><link rel="prefetch" href="/assets/js/9.ad36659b.js">
+    <link rel="preload" href="/assets/css/0.styles.a0ada997.css" as="style"><link rel="preload" href="/assets/js/app.77912ec6.js" as="script"><link rel="preload" href="/assets/js/2.795534d9.js" as="script"><link rel="preload" href="/assets/js/10.d16d5be9.js" as="script"><link rel="prefetch" href="/assets/js/11.d53eb7de.js"><link rel="prefetch" href="/assets/js/3.0c89a451.js"><link rel="prefetch" href="/assets/js/4.e2e0255b.js"><link rel="prefetch" href="/assets/js/5.653dd45a.js"><link rel="prefetch" href="/assets/js/6.1b687bdf.js"><link rel="prefetch" href="/assets/js/7.da22ae99.js"><link rel="prefetch" href="/assets/js/8.70f4a645.js"><link rel="prefetch" href="/assets/js/9.1d5f7600.js">
     <link rel="stylesheet" href="/assets/css/0.styles.a0ada997.css">
   </head>
   <body>
@@ -59,7 +59,7 @@
     <span class="token key atrule">fullnameOverride</span><span class="token punctuation">:</span> helm<span class="token punctuation">-</span>tester
     <span class="token key atrule">serviceAccountName</span><span class="token punctuation">:</span> helm<span class="token punctuation">-</span>tester
 </code></pre></div><p>Apply changes:</p> <div class="language-sh extra-class"><pre class="language-sh"><code><span class="token function">git</span> <span class="token function">add</span> -A <span class="token operator">&amp;&amp;</span> <span class="token punctuation">\</span>
-<span class="token function">git</span> commit -m <span class="token string">&quot;update podinfo&quot;</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">\</span>
+<span class="token function">git</span> commit -m <span class="token string">&quot;install helm-tester&quot;</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">\</span>
 <span class="token function">git</span> push origin master <span class="token operator">&amp;&amp;</span> <span class="token punctuation">\</span>
 fluxctl <span class="token function">sync</span>
 </code></pre></div><h2 id="run-tests"><a href="#run-tests" aria-hidden="true" class="header-anchor">#</a> Run tests</h2> <p>Add the helm test as a pre-rollout webhook:</p> <div class="language-yaml extra-class"><div class="highlight-lines"><br><br><br><br><br><br><br><br><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><br><br><br><br><br></div><pre class="language-yaml"><code><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> flagger.app/v1alpha3
@@ -91,6 +91,6 @@ If the helm test fails, Flagger will retry until the analysis threshold is reach
         <a href="/canary/" class="prev">
           Canary Releases
         </a></span> <!----></p></div> </main></div><div class="global-ui"></div></div>
-    <script src="/assets/js/app.beefc28a.js" defer></script><script src="/assets/js/2.795534d9.js" defer></script><script src="/assets/js/10.3e2cafea.js" defer></script>
+    <script src="/assets/js/app.77912ec6.js" defer></script><script src="/assets/js/2.795534d9.js" defer></script><script src="/assets/js/10.d16d5be9.js" defer></script>
   </body>
 </html>
