@@ -132,7 +132,7 @@ helmv3 upgrade -i helm-operator fluxcd/helm-operator --wait \
 --set extraEnvs[0].name=HELM_VERSION \
 --set extraEnvs[0].value=v3 \
 --set image.repository=docker.io/fluxcd/helm-operator-prerelease \
---set image.tag=helm-v3-3f3ca506
+--set image.tag=helm-v3-71bc9d62
 ```
 
 ## Linkerd
