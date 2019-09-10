@@ -16,9 +16,4 @@ spec:
       service:
         type: LoadBalancer
       metrics:
-        enabled: true
-      podAnnotations:
-        prometheus.io/port: 10254
-        prometheus.io/scrape: true
-      stats:
-        enabled: true
+        enabled: false
