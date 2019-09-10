@@ -12,7 +12,7 @@ spec:
   releaseName: podinfo
   chart:
     git: git@github.com:stefanprodan/gitops-helm-workshop
-    ref: test
+    ref: master
     path: cluster/charts/podinfo
   values:
     image:

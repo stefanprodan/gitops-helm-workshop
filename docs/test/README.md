@@ -66,7 +66,7 @@ Apply changes:
 
 ```sh
 git add -A && \
-git commit -m "update podinfo" && \
+git commit -m "install helm-tester" && \
 git push origin master && \
 fluxctl sync
 ```
