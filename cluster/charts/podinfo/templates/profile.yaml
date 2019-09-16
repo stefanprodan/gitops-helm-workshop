@@ -1,4 +1,4 @@
-apiVersion: linkerd.io/v1alpha2
+apiVersion: linkerd.io/v1alpha1
 kind: ServiceProfile
 metadata:
     name: "{{ template "podinfo.fullname" . }}.{{ .Release.Namespace }}.svc.cluster.local"
