@@ -8,7 +8,7 @@
     <link rel="icon" href="/favicon.png">
   <link rel="stylesheet" href="/website.css">
     
-    <link rel="preload" href="/assets/css/0.styles.a0ada997.css" as="style"><link rel="preload" href="/assets/js/app.b8e2825e.js" as="script"><link rel="preload" href="/assets/js/2.795534d9.js" as="script"><link rel="preload" href="/assets/js/9.32fd0c9c.js" as="script"><link rel="prefetch" href="/assets/js/10.559d761d.js"><link rel="prefetch" href="/assets/js/11.d53eb7de.js"><link rel="prefetch" href="/assets/js/3.0c89a451.js"><link rel="prefetch" href="/assets/js/4.e2e0255b.js"><link rel="prefetch" href="/assets/js/5.653dd45a.js"><link rel="prefetch" href="/assets/js/6.798adc4b.js"><link rel="prefetch" href="/assets/js/7.24c426fc.js"><link rel="prefetch" href="/assets/js/8.70f4a645.js">
+    <link rel="preload" href="/assets/css/0.styles.a0ada997.css" as="style"><link rel="preload" href="/assets/js/app.5d7edb25.js" as="script"><link rel="preload" href="/assets/js/2.795534d9.js" as="script"><link rel="preload" href="/assets/js/9.e04b69a2.js" as="script"><link rel="prefetch" href="/assets/js/10.559d761d.js"><link rel="prefetch" href="/assets/js/11.d53eb7de.js"><link rel="prefetch" href="/assets/js/3.0c89a451.js"><link rel="prefetch" href="/assets/js/4.e2e0255b.js"><link rel="prefetch" href="/assets/js/5.653dd45a.js"><link rel="prefetch" href="/assets/js/6.7b2313a9.js"><link rel="prefetch" href="/assets/js/7.24c426fc.js"><link rel="prefetch" href="/assets/js/8.b2679f1f.js">
     <link rel="stylesheet" href="/assets/css/0.styles.a0ada997.css">
   </head>
   <body>
@@ -55,7 +55,7 @@ https://github.com/fluxcd/flux/releases
 fluxctl identity
 </code></pre></div><p>Copy the public key and create a deploy key with write access on your GitHub repository.
 Go to <code>Settings &gt; Deploy keys</code> click on <code>Add deploy key</code>, check <code>Allow write access</code>,
-paste the Flux public key and click <code>Add key</code>.</p> <h2 id="helm-operator"><a href="#helm-operator" aria-hidden="true" class="header-anchor">#</a> Helm Operator</h2> <p>Install the HelmRelease CRD:</p> <div class="language-sh extra-class"><pre class="language-sh"><code>kubectl apply -f https://raw.githubusercontent.com/fluxcd/helm-operator/helm-v3/deploy/flux-helm-release-crd.yaml
+paste the Flux public key and click <code>Add key</code>.</p> <h2 id="helm-operator"><a href="#helm-operator" aria-hidden="true" class="header-anchor">#</a> Helm Operator</h2> <p>Install the HelmRelease CRD:</p> <div class="language-sh extra-class"><pre class="language-sh"><code>kubectl apply -f https://raw.githubusercontent.com/fluxcd/helm-operator/helm-v3-dev/deploy/flux-helm-release-crd.yaml
 </code></pre></div><p>Install Flux Helm Operator in the <code>fluxcd</code> namespace:</p> <div class="language-sh extra-class"><pre class="language-sh"><code>helmv3 upgrade -i helm-operator fluxcd/helm-operator --wait <span class="token punctuation">\</span>
 --namespace fluxcd <span class="token punctuation">\</span>
 --set git.ssh.secretName<span class="token operator">=</span>flux-git-deploy <span class="token punctuation">\</span>
@@ -92,6 +92,6 @@ https://github.com/linkerd/linkerd2/releases
         </a>
         →
       </span></p></div> </main></div><div class="global-ui"></div></div>
-    <script src="/assets/js/app.b8e2825e.js" defer></script><script src="/assets/js/2.795534d9.js" defer></script><script src="/assets/js/9.32fd0c9c.js" defer></script>
+    <script src="/assets/js/app.5d7edb25.js" defer></script><script src="/assets/js/2.795534d9.js" defer></script><script src="/assets/js/9.e04b69a2.js" defer></script>
   </body>
 </html>
