@@ -115,7 +115,7 @@ paste the Flux public key and click `Add key`.
 Install the HelmRelease CRD:
 
 ```sh
-kubectl apply -f https://raw.githubusercontent.com/fluxcd/helm-operator/helm-v3/deploy/flux-helm-release-crd.yaml
+kubectl apply -f https://raw.githubusercontent.com/fluxcd/helm-operator/helm-v3-dev/deploy/flux-helm-release-crd.yaml
 ```
 
 Install Flux Helm Operator in the `fluxcd` namespace:
