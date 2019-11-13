@@ -7,7 +7,7 @@ title: Prerequisites
 In order to install the workshop prerequisites you'll need a Kubernetes cluster **1.13**
 or newer with **Load Balancer** support and **RBAC** enabled.
 Make sure you have the following tools installed locally:
-* kubectl 1.14
+* kubectl 1.16
 * git 2.20
 
 ## Helm v3
@@ -17,7 +17,7 @@ Download the Helm v3 CLI:
 ```sh
 OS=darwin-amd64 && \
 mkdir -p $HOME/.helm3/bin && \
-curl -sSL "https://get.helm.sh/helm-v3.0.0-beta.3-${OS}.tar.gz" | tar xvz && \
+curl -sSL "https://get.helm.sh/helm-v3.0.0-${OS}.tar.gz" | tar xvz && \
 chmod +x ${OS}/helm && mv ${OS}/helm $HOME/.helm3/bin/helmv3
 ```
 
@@ -132,7 +132,7 @@ helmv3 upgrade -i helm-operator fluxcd/helm-operator --wait \
 --set extraEnvs[0].name=HELM_VERSION \
 --set extraEnvs[0].value=v3 \
 --set image.repository=docker.io/fluxcd/helm-operator-prerelease \
---set image.tag=helm-v3-71bc9d62
+--set image.tag=helm-v3-dev-fb98e2db
 ```
 
 ## Linkerd
