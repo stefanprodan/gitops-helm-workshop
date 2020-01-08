@@ -8,7 +8,7 @@
     <link rel="icon" href="/favicon.png">
   <link rel="stylesheet" href="/website.css">
     
-    <link rel="preload" href="/assets/css/0.styles.a0ada997.css" as="style"><link rel="preload" href="/assets/js/app.1eb36d2a.js" as="script"><link rel="preload" href="/assets/js/2.795534d9.js" as="script"><link rel="preload" href="/assets/js/7.da22ae99.js" as="script"><link rel="prefetch" href="/assets/js/10.559d761d.js"><link rel="prefetch" href="/assets/js/11.d53eb7de.js"><link rel="prefetch" href="/assets/js/3.0c89a451.js"><link rel="prefetch" href="/assets/js/4.e2e0255b.js"><link rel="prefetch" href="/assets/js/5.653dd45a.js"><link rel="prefetch" href="/assets/js/6.1b687bdf.js"><link rel="prefetch" href="/assets/js/8.70f4a645.js"><link rel="prefetch" href="/assets/js/9.58664def.js">
+    <link rel="preload" href="/assets/css/0.styles.a0ada997.css" as="style"><link rel="preload" href="/assets/js/app.246f1487.js" as="script"><link rel="preload" href="/assets/js/2.795534d9.js" as="script"><link rel="preload" href="/assets/js/7.ec00b76b.js" as="script"><link rel="prefetch" href="/assets/js/10.559d761d.js"><link rel="prefetch" href="/assets/js/11.d53eb7de.js"><link rel="prefetch" href="/assets/js/3.0c89a451.js"><link rel="prefetch" href="/assets/js/4.e2e0255b.js"><link rel="prefetch" href="/assets/js/5.653dd45a.js"><link rel="prefetch" href="/assets/js/6.1b687bdf.js"><link rel="prefetch" href="/assets/js/8.70f4a645.js"><link rel="prefetch" href="/assets/js/9.58664def.js">
     <link rel="stylesheet" href="/assets/css/0.styles.a0ada997.css">
   </head>
   <body>
@@ -24,7 +24,7 @@ The controller will run inside the Linkerd mesh.</p> <p>Create a namespace with 
     <span class="token key atrule">fluxcd.io/ignore</span><span class="token punctuation">:</span> <span class="token string">&quot;false&quot;</span>
     <span class="token key atrule">linkerd.io/inject</span><span class="token punctuation">:</span> enabled
   <span class="token key atrule">name</span><span class="token punctuation">:</span> ingress<span class="token punctuation">-</span>nginx
-</code></pre></div><p>Create a Helm release to install the NGINX ingress controller:</p> <div class="language-yaml extra-class"><div class="highlight-lines"><br><br><br><br><br><br><div class="highlighted"> </div><br><br><br><br><br><br><br><br><br><br><br></div><pre class="language-yaml"><code><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> helm.fluxcd.io/v1
+</code></pre></div><p>Create a Helm release to install the NGINX ingress controller:</p> <div class="language-yaml extra-class"><div class="highlight-lines"><br><br><br><br><br><br><div class="highlighted"> </div><br><br><br><br><br><br><br><br><br><br><br><br><br></div><pre class="language-yaml"><code><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> helm.fluxcd.io/v1
 <span class="token key atrule">kind</span><span class="token punctuation">:</span> HelmRelease
 <span class="token key atrule">metadata</span><span class="token punctuation">:</span>
   <span class="token key atrule">name</span><span class="token punctuation">:</span> nginx<span class="token punctuation">-</span>ingress
@@ -36,11 +36,13 @@ The controller will run inside the Linkerd mesh.</p> <p>Create a namespace with 
   <span class="token key atrule">chart</span><span class="token punctuation">:</span>
     <span class="token key atrule">repository</span><span class="token punctuation">:</span> https<span class="token punctuation">:</span>//kubernetes<span class="token punctuation">-</span>charts.storage.googleapis.com/
     <span class="token key atrule">name</span><span class="token punctuation">:</span> nginx<span class="token punctuation">-</span>ingress
-    <span class="token key atrule">version</span><span class="token punctuation">:</span> 1.19.0
+    <span class="token key atrule">version</span><span class="token punctuation">:</span> 1.25.0
   <span class="token key atrule">values</span><span class="token punctuation">:</span>
     <span class="token key atrule">controller</span><span class="token punctuation">:</span>
       <span class="token key atrule">service</span><span class="token punctuation">:</span>
         <span class="token key atrule">type</span><span class="token punctuation">:</span> LoadBalancer
+      <span class="token key atrule">metrics</span><span class="token punctuation">:</span>
+        <span class="token key atrule">enabled</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
 </code></pre></div><p>Apply changes:</p> <div class="language-sh extra-class"><pre class="language-sh"><code><span class="token function">git</span> <span class="token function">add</span> -A <span class="token operator">&amp;&amp;</span> <span class="token punctuation">\</span>
 <span class="token function">git</span> commit -m <span class="token string">&quot;install ingress&quot;</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">\</span>
 <span class="token function">git</span> push origin master <span class="token operator">&amp;&amp;</span> <span class="token punctuation">\</span>
@@ -158,6 +160,6 @@ kubectl delete pod -n fluxcd -l <span class="token assign-left variable">app</sp
         </a>
         →
       </span></p></div> </main></div><div class="global-ui"></div></div>
-    <script src="/assets/js/app.1eb36d2a.js" defer></script><script src="/assets/js/2.795534d9.js" defer></script><script src="/assets/js/7.da22ae99.js" defer></script>
+    <script src="/assets/js/app.246f1487.js" defer></script><script src="/assets/js/2.795534d9.js" defer></script><script src="/assets/js/7.ec00b76b.js" defer></script>
   </body>
 </html>
