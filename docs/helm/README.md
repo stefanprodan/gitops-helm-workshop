@@ -42,11 +42,13 @@ spec:
   chart:
     repository: https://kubernetes-charts.storage.googleapis.com/
     name: nginx-ingress
-    version: 1.19.0
+    version: 1.25.0
   values:
     controller:
       service:
         type: LoadBalancer
+      metrics:
+        enabled: false
 ```
 
 Apply changes:
