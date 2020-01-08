@@ -12,27 +12,13 @@ Make sure you have the following tools installed locally:
 
 ## Helm v3
 
-Download the Helm v3 CLI:
+Install the Helm v3 CLI on macOS:
 
 ```sh
-OS=darwin-amd64 && \
-mkdir -p $HOME/.helm3/bin && \
-curl -sSL "https://get.helm.sh/helm-v3.0.0-${OS}.tar.gz" | tar xvz && \
-chmod +x ${OS}/helm && mv ${OS}/helm $HOME/.helm3/bin/helmv3
+brew install helm
 ```
 
-Add the helmv3 binary to your path and set Helm home:
-
-```sh
-export PATH=$PATH:$HOME/.helm3/bin
-export HELM_HOME=$HOME/.helm3
-```
-
-Verify the installation with:
-
-```sh
-helmv3 version
-```
+On Linux or Windows you can download the binary from the [official releases page](https://github.com/helm/helm/releases).
 
 ## Git
 
@@ -68,7 +54,7 @@ Cluster state directory structure:
 Add FluxCD repository to Helm repos:
 
 ```sh
-helmv3 repo add fluxcd https://charts.fluxcd.io
+helm repo add fluxcd https://charts.fluxcd.io
 ```
 
 Create the fluxcd namespace:
@@ -80,7 +66,7 @@ kubectl create ns fluxcd
 Install Flux by providing your GitHub repository URL:
 
 ```sh
-helmv3 upgrade -i flux fluxcd/flux --wait \
+helm upgrade -i flux fluxcd/flux --wait \
 --namespace fluxcd \
 --set registry.pollInterval=1m \
 --set git.pollInterval=1m \
@@ -115,24 +101,18 @@ paste the Flux public key and click `Add key`.
 Install the HelmRelease CRD:
 
 ```sh
-kubectl apply -f https://raw.githubusercontent.com/fluxcd/helm-operator/helm-v3-dev/deploy/flux-helm-release-crd.yaml
+kubectl apply -f https://raw.githubusercontent.com/fluxcd/helm-operator/master/deploy/flux-helm-release-crd.yaml
 ```
 
 Install Flux Helm Operator in the `fluxcd` namespace:
 
 ```sh
-helmv3 upgrade -i helm-operator fluxcd/helm-operator --wait \
+helm upgrade -i helm-operator fluxcd/helm-operator --wait \
 --namespace fluxcd \
 --set git.ssh.secretName=flux-git-deploy \
 --set git.pollInterval=1m \
 --set chartsSyncInterval=1m \
---set configureRepositories.enable=true \
---set configureRepositories.repositories[0].name=stable \
---set configureRepositories.repositories[0].url=https://kubernetes-charts.storage.googleapis.com \
---set extraEnvs[0].name=HELM_VERSION \
---set extraEnvs[0].value=v3 \
---set image.repository=docker.io/fluxcd/helm-operator-prerelease \
---set image.tag=helm-v3-dev-0b11d9d0
+--set helm.versions=v3
 ```
 
 ## Linkerd
@@ -165,7 +145,7 @@ linkerd check
 Add Flagger Helm repository:
 
 ```sh
-helmv3 repo add flagger https://flagger.app
+helm repo add flagger https://flagger.app
 ```
 
 Install Flagger's Canary CRD:
@@ -177,7 +157,7 @@ kubectl apply -f https://raw.githubusercontent.com/weaveworks/flagger/master/art
 Install Flagger in the `linkerd` namespace:
 
 ```sh
-helmv3 upgrade -i flagger flagger/flagger --wait \
+helm upgrade -i flagger flagger/flagger --wait \
 --namespace linkerd \
 --set crd.create=false \
 --set metricsServer=http://linkerd-prometheus:9090 \
