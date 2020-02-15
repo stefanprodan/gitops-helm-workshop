@@ -8,8 +8,9 @@ pipeline {
   stages {
     stage('build') {
       steps {
-        sh '''env | sort
-'''
+        sh '''
+        env | sort
+        '''
       }
     }
 
