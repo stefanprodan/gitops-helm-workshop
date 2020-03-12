@@ -55,7 +55,7 @@ spec:
   releaseName: helm-tester
   chart:
     git: https://github.com/weaveworks/flagger
-    ref: 0.18.4
+    ref: 1.0.0-rc.1
     path: charts/loadtester
   values:
     fullnameOverride: helm-tester
@@ -76,13 +76,13 @@ fluxctl sync
 Add the helm test as a pre-rollout webhook:
 
 ```yaml{9,10,11,12,13,14,15}
-apiVersion: flagger.app/v1alpha3
+apiVersion: flagger.app/v1beta1
 kind: Canary
 metadata:
   name: podinfo
   namespace: prod
 spec:
-  canaryAnalysis:
+  analysis:
     webhooks:
       - name: "helm test"
         type: pre-rollout
@@ -90,11 +90,11 @@ spec:
         timeout: 2m
         metadata:
           type: "helmv3"
-          cmd: "test run podinfo --cleanup"
+          cmd: "test podinfo"
       - name: load-test
         url: http://load-tester.prod/
         metadata:
-          cmd: "hey -z 2m -q 10 -c 2 http://podinfo:9898/"
+          cmd: "hey -z 2m -q 10 -c 2 http://podinfo-canary.prod:9898/"
 ```
 
 Apply changes:

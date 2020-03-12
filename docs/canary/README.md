@@ -23,7 +23,7 @@ spec:
   values:
     image:
       repository: stefanprodan/podinfo
-      tag: 3.0.0
+      tag: 3.1.0
     service:
       enabled: false
       type: ClusterIP
@@ -41,7 +41,7 @@ fluxctl sync
 Create a canary release for podinfo:
 
 ```yaml{7}
-apiVersion: flagger.app/v1alpha3
+apiVersion: flagger.app/v1beta1
 kind: Canary
 metadata:
   name: podinfo
@@ -55,22 +55,33 @@ spec:
     name: podinfo
   service:
     port: 9898
-  canaryAnalysis:
+  analysis:
     interval: 10s
+    maxWeight: 100
     stepWeight: 5
     threshold: 5
     metrics:
-    - name: request-success-rate
-      threshold: 99
-      interval: 1m
-    - name: request-duration
-      threshold: 500
-      interval: 1m
+      - name: request-success-rate
+        thresholdRange:
+          min: 99
+        interval: 1m
+      - name: request-duration
+        thresholdRange:
+          max: 500
+        interval: 1m
     webhooks:
-      - name: load-test
-        url: http://load-tester.prod/
+      - name: acceptance-test
+        type: pre-rollout
+        url: http://flagger-loadtester.prod/
+        timeout: 30s
         metadata:
-          cmd: "hey -z 2m -q 10 -c 2 http://podinfo:9898/"
+          type: bash
+          cmd: "curl -sd 'test' http://podinfo-canary.prod:9898/token | grep token"
+      - name: load-test
+        type: rollout
+        url: http://flagger-loadtester.prod/
+        metadata:
+          cmd: "hey -z 2m -q 10 -c 2 http://podinfo-canary.prod:9898/"
 ```
 
 Apply changes:
@@ -104,7 +115,7 @@ spec:
   releaseName: load-tester
   chart:
     git: https://github.com/weaveworks/flagger
-    ref: 0.18.4
+    ref: 1.0.0-rc.1
     path: charts/loadtester
   values:
     fullnameOverride: load-tester
@@ -123,7 +134,7 @@ spec:
   releaseName: podinfo
   values:
     image:
-      tag: 3.0.1
+      tag: 3.1.1
 ```
 
 Apply changes:
@@ -156,7 +167,7 @@ spec:
   releaseName: podinfo
   values:
     image:
-      tag: 3.0.2
+      tag: 3.1.2
 ```
 
 Apply changes:
