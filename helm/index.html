@@ -8,7 +8,7 @@
     <link rel="icon" href="/favicon.png">
   <link rel="stylesheet" href="/website.css">
     
-    <link rel="preload" href="/assets/css/0.styles.a0ada997.css" as="style"><link rel="preload" href="/assets/js/app.246f1487.js" as="script"><link rel="preload" href="/assets/js/2.795534d9.js" as="script"><link rel="preload" href="/assets/js/7.ec00b76b.js" as="script"><link rel="prefetch" href="/assets/js/10.559d761d.js"><link rel="prefetch" href="/assets/js/11.d53eb7de.js"><link rel="prefetch" href="/assets/js/3.0c89a451.js"><link rel="prefetch" href="/assets/js/4.e2e0255b.js"><link rel="prefetch" href="/assets/js/5.653dd45a.js"><link rel="prefetch" href="/assets/js/6.1b687bdf.js"><link rel="prefetch" href="/assets/js/8.70f4a645.js"><link rel="prefetch" href="/assets/js/9.58664def.js">
+    <link rel="preload" href="/assets/css/0.styles.a0ada997.css" as="style"><link rel="preload" href="/assets/js/app.ff576fad.js" as="script"><link rel="preload" href="/assets/js/2.795534d9.js" as="script"><link rel="preload" href="/assets/js/7.d311c3f3.js" as="script"><link rel="prefetch" href="/assets/js/10.b43f2962.js"><link rel="prefetch" href="/assets/js/11.d53eb7de.js"><link rel="prefetch" href="/assets/js/3.0c89a451.js"><link rel="prefetch" href="/assets/js/4.e2e0255b.js"><link rel="prefetch" href="/assets/js/5.653dd45a.js"><link rel="prefetch" href="/assets/js/6.dda421e9.js"><link rel="prefetch" href="/assets/js/8.70f4a645.js"><link rel="prefetch" href="/assets/js/9.eab26239.js">
     <link rel="stylesheet" href="/assets/css/0.styles.a0ada997.css">
   </head>
   <body>
@@ -24,7 +24,7 @@ The controller will run inside the Linkerd mesh.</p> <p>Create a namespace with 
     <span class="token key atrule">fluxcd.io/ignore</span><span class="token punctuation">:</span> <span class="token string">&quot;false&quot;</span>
     <span class="token key atrule">linkerd.io/inject</span><span class="token punctuation">:</span> enabled
   <span class="token key atrule">name</span><span class="token punctuation">:</span> ingress<span class="token punctuation">-</span>nginx
-</code></pre></div><p>Create a Helm release to install the NGINX ingress controller:</p> <div class="language-yaml extra-class"><div class="highlight-lines"><br><br><br><br><br><br><div class="highlighted"> </div><br><br><br><br><br><br><br><br><br><br><br><br><br></div><pre class="language-yaml"><code><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> helm.fluxcd.io/v1
+</code></pre></div><p>Create a Helm release to install the NGINX ingress controller:</p> <div class="language-yaml extra-class"><div class="highlight-lines"><br><br><br><br><br><br><div class="highlighted"> </div><br><br><br><br><br><br><br><br><br><br><br></div><pre class="language-yaml"><code><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> helm.fluxcd.io/v1
 <span class="token key atrule">kind</span><span class="token punctuation">:</span> HelmRelease
 <span class="token key atrule">metadata</span><span class="token punctuation">:</span>
   <span class="token key atrule">name</span><span class="token punctuation">:</span> nginx<span class="token punctuation">-</span>ingress
@@ -36,13 +36,11 @@ The controller will run inside the Linkerd mesh.</p> <p>Create a namespace with 
   <span class="token key atrule">chart</span><span class="token punctuation">:</span>
     <span class="token key atrule">repository</span><span class="token punctuation">:</span> https<span class="token punctuation">:</span>//kubernetes<span class="token punctuation">-</span>charts.storage.googleapis.com/
     <span class="token key atrule">name</span><span class="token punctuation">:</span> nginx<span class="token punctuation">-</span>ingress
-    <span class="token key atrule">version</span><span class="token punctuation">:</span> 1.25.0
+    <span class="token key atrule">version</span><span class="token punctuation">:</span> 1.33.4
   <span class="token key atrule">values</span><span class="token punctuation">:</span>
     <span class="token key atrule">controller</span><span class="token punctuation">:</span>
       <span class="token key atrule">service</span><span class="token punctuation">:</span>
         <span class="token key atrule">type</span><span class="token punctuation">:</span> LoadBalancer
-      <span class="token key atrule">metrics</span><span class="token punctuation">:</span>
-        <span class="token key atrule">enabled</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
 </code></pre></div><p>Apply changes:</p> <div class="language-sh extra-class"><pre class="language-sh"><code><span class="token function">git</span> <span class="token function">add</span> -A <span class="token operator">&amp;&amp;</span> <span class="token punctuation">\</span>
 <span class="token function">git</span> commit -m <span class="token string">&quot;install ingress&quot;</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">\</span>
 <span class="token function">git</span> push origin master <span class="token operator">&amp;&amp;</span> <span class="token punctuation">\</span>
@@ -74,7 +72,7 @@ You'll be installing podinfo using a Helm chart stored in the git repository at 
   <span class="token key atrule">values</span><span class="token punctuation">:</span>
     <span class="token key atrule">image</span><span class="token punctuation">:</span>
       <span class="token key atrule">repository</span><span class="token punctuation">:</span> stefanprodan/podinfo
-      <span class="token key atrule">tag</span><span class="token punctuation">:</span> 3.0.0
+      <span class="token key atrule">tag</span><span class="token punctuation">:</span> 3.1.0
     <span class="token key atrule">service</span><span class="token punctuation">:</span>
       <span class="token key atrule">enabled</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
       <span class="token key atrule">type</span><span class="token punctuation">:</span> ClusterIP
@@ -95,7 +93,7 @@ You'll be installing podinfo using a Helm chart stored in the git repository at 
 <span class="token function">git</span> push origin master <span class="token operator">&amp;&amp;</span> <span class="token punctuation">\</span>
 fluxctl <span class="token function">sync</span>
 </code></pre></div><p>Validate that the Helm operator has installed podinfo:</p> <div class="language-sh extra-class"><pre class="language-sh"><code>kubectl -n prod get hr
-</code></pre></div><p>Open your browser and navigate to <code>http://LB-PUBLIC-IP.nip.io/</code>, you should see podinfo v3.0.0 UI.</p> <p><img src="/podinfo-3.0.0.png" alt="podinfo"></p> <h2 id="automated-upgrade"><a href="#automated-upgrade" aria-hidden="true" class="header-anchor">#</a> Automated upgrade</h2> <p>Flux can be used to automate container image updates in your cluster.
+</code></pre></div><p>Open your browser and navigate to <code>http://LB-PUBLIC-IP.nip.io/</code>, you should see podinfo v3.1.0 UI.</p> <h2 id="automated-upgrade"><a href="#automated-upgrade" aria-hidden="true" class="header-anchor">#</a> Automated upgrade</h2> <p>Flux can be used to automate container image updates in your cluster.
 You can enable the automate image tag updates by annotating Helm release objects.
 You can also control what tags should be considered for an
 update by using glob, regex or semantic version expressions.</p> <p>Edit the podinfo Helm release and enable Flux automated image updates:</p> <div class="language-yaml extra-class"><div class="highlight-lines"><br><br><br><br><div class="highlighted"> </div><div class="highlighted"> </div><br></div><pre class="language-yaml"><code><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> helm.fluxcd.io/v1
@@ -103,14 +101,14 @@ update by using glob, regex or semantic version expressions.</p> <p>Edit the pod
 <span class="token key atrule">metadata</span><span class="token punctuation">:</span>
   <span class="token key atrule">annotations</span><span class="token punctuation">:</span>
     <span class="token key atrule">fluxcd.io/automated</span><span class="token punctuation">:</span> <span class="token string">&quot;true&quot;</span>
-    <span class="token key atrule">fluxcd.io/tag.chart-image</span><span class="token punctuation">:</span> semver<span class="token punctuation">:</span>~3.0
+    <span class="token key atrule">fluxcd.io/tag.chart-image</span><span class="token punctuation">:</span> semver<span class="token punctuation">:</span>~3.1
 </code></pre></div><p>Apply changes:</p> <div class="language-sh extra-class"><pre class="language-sh"><code><span class="token function">git</span> <span class="token function">add</span> -A <span class="token operator">&amp;&amp;</span> <span class="token punctuation">\</span>
 <span class="token function">git</span> commit -m <span class="token string">&quot;automate podinfo&quot;</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">\</span>
 <span class="token function">git</span> push origin master <span class="token operator">&amp;&amp;</span> <span class="token punctuation">\</span>
 fluxctl <span class="token function">sync</span>
 </code></pre></div><p>Validate that the Helm operator has upgraded podinfo:</p> <div class="language-sh extra-class"><pre class="language-sh"><code>kubectl -n prod get hr
 </code></pre></div><p>Pull the changes made by Flux locally:</p> <div class="language-sh extra-class"><pre class="language-sh"><code><span class="token function">git</span> pull origin master
-</code></pre></div><p>Open your browser and navigate to <code>http://LB-PUBLIC-IP.nip.io/</code>, you should see podinfo v3.0.5 UI.</p> <p><img src="/podinfo-3.0.5.png" alt="podinfo"></p> <h2 id="sealed-secrets"><a href="#sealed-secrets" aria-hidden="true" class="header-anchor">#</a> Sealed secrets</h2> <p>In order to store secrets safely in a public Git repo you can use the
+</code></pre></div><p>Open your browser and navigate to <code>http://LB-PUBLIC-IP.nip.io/</code>, you should see podinfo v3.1.5 UI.</p> <h2 id="sealed-secrets"><a href="#sealed-secrets" aria-hidden="true" class="header-anchor">#</a> Sealed secrets</h2> <p>In order to store secrets safely in a public Git repo you can use the
 <a href="https://github.com/bitnami-labs/sealed-secrets" target="_blank" rel="noopener noreferrer">Sealed Secrets controller<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>
 and encrypt your Kubernetes Secrets into <strong>SealedSecrets</strong>.
 The sealed secret can be decrypted only by the controller running in your cluster.</p> <p>Create the Sealed Secrets Helm release:</p> <div class="language-yaml extra-class"><div class="highlight-lines"><br><br><br><br><br><br><div class="highlighted"> </div><br><br><br><br><br><br><br></div><pre class="language-yaml"><code><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> helm.fluxcd.io/v1
@@ -125,12 +123,12 @@ The sealed secret can be decrypted only by the controller running in your cluste
   <span class="token key atrule">chart</span><span class="token punctuation">:</span>
     <span class="token key atrule">repository</span><span class="token punctuation">:</span> https<span class="token punctuation">:</span>//kubernetes<span class="token punctuation">-</span>charts.storage.googleapis.com/
     <span class="token key atrule">name</span><span class="token punctuation">:</span> sealed<span class="token punctuation">-</span>secrets
-    <span class="token key atrule">version</span><span class="token punctuation">:</span> 1.4.0
+    <span class="token key atrule">version</span><span class="token punctuation">:</span> 1.8.0
 </code></pre></div><p>Apply changes:</p> <div class="language-sh extra-class"><pre class="language-sh"><code><span class="token function">git</span> <span class="token function">add</span> -A <span class="token operator">&amp;&amp;</span> <span class="token punctuation">\</span>
 <span class="token function">git</span> commit -m <span class="token string">&quot;install sealed-secrets&quot;</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">\</span>
 <span class="token function">git</span> push origin master <span class="token operator">&amp;&amp;</span> <span class="token punctuation">\</span>
 fluxctl <span class="token function">sync</span>
-</code></pre></div><p>Install the kubeseal CLI:</p> <div class="language-sh extra-class"><pre class="language-sh"><code><span class="token function">wget</span> https://github.com/bitnami-labs/sealed-secrets/releases/download/v0.8.1/kubeseal-darwin-amd64
+</code></pre></div><p>Install the kubeseal CLI:</p> <div class="language-sh extra-class"><pre class="language-sh"><code><span class="token function">wget</span> https://github.com/bitnami-labs/sealed-secrets/releases/download/v1.8.0/kubeseal-darwin-amd64
 <span class="token function">sudo</span> <span class="token function">install</span> -m <span class="token number">755</span> kubeseal-darwin-amd64 /usr/local/bin/kubeseal
 </code></pre></div><p>At startup, the sealed-secrets controller generates a RSA key and logs the public key.
 Using kubeseal you can save your public key as pub-cert.pem,
@@ -160,6 +158,6 @@ kubectl delete pod -n fluxcd -l <span class="token assign-left variable">app</sp
         </a>
         →
       </span></p></div> </main></div><div class="global-ui"></div></div>
-    <script src="/assets/js/app.246f1487.js" defer></script><script src="/assets/js/2.795534d9.js" defer></script><script src="/assets/js/7.ec00b76b.js" defer></script>
+    <script src="/assets/js/app.ff576fad.js" defer></script><script src="/assets/js/2.795534d9.js" defer></script><script src="/assets/js/7.d311c3f3.js" defer></script>
   </body>
 </html>

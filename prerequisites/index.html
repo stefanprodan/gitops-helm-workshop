@@ -8,7 +8,7 @@
     <link rel="icon" href="/favicon.png">
   <link rel="stylesheet" href="/website.css">
     
-    <link rel="preload" href="/assets/css/0.styles.a0ada997.css" as="style"><link rel="preload" href="/assets/js/app.246f1487.js" as="script"><link rel="preload" href="/assets/js/2.795534d9.js" as="script"><link rel="preload" href="/assets/js/9.58664def.js" as="script"><link rel="prefetch" href="/assets/js/10.559d761d.js"><link rel="prefetch" href="/assets/js/11.d53eb7de.js"><link rel="prefetch" href="/assets/js/3.0c89a451.js"><link rel="prefetch" href="/assets/js/4.e2e0255b.js"><link rel="prefetch" href="/assets/js/5.653dd45a.js"><link rel="prefetch" href="/assets/js/6.1b687bdf.js"><link rel="prefetch" href="/assets/js/7.ec00b76b.js"><link rel="prefetch" href="/assets/js/8.70f4a645.js">
+    <link rel="preload" href="/assets/css/0.styles.a0ada997.css" as="style"><link rel="preload" href="/assets/js/app.ff576fad.js" as="script"><link rel="preload" href="/assets/js/2.795534d9.js" as="script"><link rel="preload" href="/assets/js/9.eab26239.js" as="script"><link rel="prefetch" href="/assets/js/10.b43f2962.js"><link rel="prefetch" href="/assets/js/11.d53eb7de.js"><link rel="prefetch" href="/assets/js/3.0c89a451.js"><link rel="prefetch" href="/assets/js/4.e2e0255b.js"><link rel="prefetch" href="/assets/js/5.653dd45a.js"><link rel="prefetch" href="/assets/js/6.dda421e9.js"><link rel="prefetch" href="/assets/js/7.d311c3f3.js"><link rel="prefetch" href="/assets/js/8.70f4a645.js">
     <link rel="stylesheet" href="/assets/css/0.styles.a0ada997.css">
   </head>
   <body>
@@ -31,7 +31,7 @@ and clone it locally (replace the <code>GHUSER</code> value with your GitHub use
     │   └── podinfo
     ├── namespaces
     └── releases
-</code></pre></div><h2 id="flux"><a href="#flux" aria-hidden="true" class="header-anchor">#</a> Flux</h2> <p>Add FluxCD repository to Helm repos:</p> <div class="language-sh extra-class"><pre class="language-sh"><code>helm repo <span class="token function">add</span> fluxcd https://charts.fluxcd.io
+</code></pre></div><h2 id="flux"><a href="#flux" aria-hidden="true" class="header-anchor">#</a> Flux</h2> <p>Add Flux repository to Helm repos:</p> <div class="language-sh extra-class"><pre class="language-sh"><code>helm repo <span class="token function">add</span> fluxcd https://charts.fluxcd.io
 </code></pre></div><p>Create the fluxcd namespace:</p> <div class="language-sh extra-class"><pre class="language-sh"><code>kubectl create ns fluxcd
 </code></pre></div><p>Install Flux by providing your GitHub repository URL:</p> <div class="language-sh extra-class"><pre class="language-sh"><code>helm upgrade -i flux fluxcd/flux --wait <span class="token punctuation">\</span>
 --namespace fluxcd <span class="token punctuation">\</span>
@@ -49,8 +49,7 @@ https://github.com/fluxcd/flux/releases
 fluxctl identity
 </code></pre></div><p>Copy the public key and create a deploy key with write access on your GitHub repository.
 Go to <code>Settings &gt; Deploy keys</code> click on <code>Add deploy key</code>, check <code>Allow write access</code>,
-paste the Flux public key and click <code>Add key</code>.</p> <h2 id="helm-operator"><a href="#helm-operator" aria-hidden="true" class="header-anchor">#</a> Helm Operator</h2> <p>Install the HelmRelease CRD:</p> <div class="language-sh extra-class"><pre class="language-sh"><code>kubectl apply -f https://raw.githubusercontent.com/fluxcd/helm-operator/master/deploy/flux-helm-release-crd.yaml
-</code></pre></div><p>Install Flux Helm Operator in the <code>fluxcd</code> namespace:</p> <div class="language-sh extra-class"><pre class="language-sh"><code>helm upgrade -i helm-operator fluxcd/helm-operator --wait <span class="token punctuation">\</span>
+paste the Flux public key and click <code>Add key</code>.</p> <h2 id="helm-operator"><a href="#helm-operator" aria-hidden="true" class="header-anchor">#</a> Helm Operator</h2> <p>Install Flux Helm Operator in the <code>fluxcd</code> namespace:</p> <div class="language-sh extra-class"><pre class="language-sh"><code>helm upgrade -i helm-operator fluxcd/helm-operator --wait <span class="token punctuation">\</span>
 --namespace fluxcd <span class="token punctuation">\</span>
 --set git.ssh.secretName<span class="token operator">=</span>flux-git-deploy <span class="token punctuation">\</span>
 --set git.pollInterval<span class="token operator">=</span>1m <span class="token punctuation">\</span>
@@ -80,6 +79,6 @@ https://github.com/linkerd/linkerd2/releases
         </a>
         →
       </span></p></div> </main></div><div class="global-ui"></div></div>
-    <script src="/assets/js/app.246f1487.js" defer></script><script src="/assets/js/2.795534d9.js" defer></script><script src="/assets/js/9.58664def.js" defer></script>
+    <script src="/assets/js/app.ff576fad.js" defer></script><script src="/assets/js/2.795534d9.js" defer></script><script src="/assets/js/9.eab26239.js" defer></script>
   </body>
 </html>

@@ -8,7 +8,7 @@
     <link rel="icon" href="/favicon.png">
   <link rel="stylesheet" href="/website.css">
     
-    <link rel="preload" href="/assets/css/0.styles.a0ada997.css" as="style"><link rel="preload" href="/assets/js/app.246f1487.js" as="script"><link rel="preload" href="/assets/js/2.795534d9.js" as="script"><link rel="preload" href="/assets/js/10.559d761d.js" as="script"><link rel="prefetch" href="/assets/js/11.d53eb7de.js"><link rel="prefetch" href="/assets/js/3.0c89a451.js"><link rel="prefetch" href="/assets/js/4.e2e0255b.js"><link rel="prefetch" href="/assets/js/5.653dd45a.js"><link rel="prefetch" href="/assets/js/6.1b687bdf.js"><link rel="prefetch" href="/assets/js/7.ec00b76b.js"><link rel="prefetch" href="/assets/js/8.70f4a645.js"><link rel="prefetch" href="/assets/js/9.58664def.js">
+    <link rel="preload" href="/assets/css/0.styles.a0ada997.css" as="style"><link rel="preload" href="/assets/js/app.ff576fad.js" as="script"><link rel="preload" href="/assets/js/2.795534d9.js" as="script"><link rel="preload" href="/assets/js/10.b43f2962.js" as="script"><link rel="prefetch" href="/assets/js/11.d53eb7de.js"><link rel="prefetch" href="/assets/js/3.0c89a451.js"><link rel="prefetch" href="/assets/js/4.e2e0255b.js"><link rel="prefetch" href="/assets/js/5.653dd45a.js"><link rel="prefetch" href="/assets/js/6.dda421e9.js"><link rel="prefetch" href="/assets/js/7.d311c3f3.js"><link rel="prefetch" href="/assets/js/8.70f4a645.js"><link rel="prefetch" href="/assets/js/9.eab26239.js">
     <link rel="stylesheet" href="/assets/css/0.styles.a0ada997.css">
   </head>
   <body>
@@ -53,7 +53,7 @@
   <span class="token key atrule">releaseName</span><span class="token punctuation">:</span> helm<span class="token punctuation">-</span>tester
   <span class="token key atrule">chart</span><span class="token punctuation">:</span>
     <span class="token key atrule">git</span><span class="token punctuation">:</span> https<span class="token punctuation">:</span>//github.com/weaveworks/flagger
-    <span class="token key atrule">ref</span><span class="token punctuation">:</span> 0.18.4
+    <span class="token key atrule">ref</span><span class="token punctuation">:</span> 1.0.0<span class="token punctuation">-</span>rc.1
     <span class="token key atrule">path</span><span class="token punctuation">:</span> charts/loadtester
   <span class="token key atrule">values</span><span class="token punctuation">:</span>
     <span class="token key atrule">fullnameOverride</span><span class="token punctuation">:</span> helm<span class="token punctuation">-</span>tester
@@ -62,13 +62,13 @@
 <span class="token function">git</span> commit -m <span class="token string">&quot;install helm-tester&quot;</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">\</span>
 <span class="token function">git</span> push origin master <span class="token operator">&amp;&amp;</span> <span class="token punctuation">\</span>
 fluxctl <span class="token function">sync</span>
-</code></pre></div><h2 id="run-tests"><a href="#run-tests" aria-hidden="true" class="header-anchor">#</a> Run tests</h2> <p>Add the helm test as a pre-rollout webhook:</p> <div class="language-yaml extra-class"><div class="highlight-lines"><br><br><br><br><br><br><br><br><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><br><br><br><br><br></div><pre class="language-yaml"><code><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> flagger.app/v1alpha3
+</code></pre></div><h2 id="run-tests"><a href="#run-tests" aria-hidden="true" class="header-anchor">#</a> Run tests</h2> <p>Add the helm test as a pre-rollout webhook:</p> <div class="language-yaml extra-class"><div class="highlight-lines"><br><br><br><br><br><br><br><br><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><br><br><br><br><br></div><pre class="language-yaml"><code><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> flagger.app/v1beta1
 <span class="token key atrule">kind</span><span class="token punctuation">:</span> Canary
 <span class="token key atrule">metadata</span><span class="token punctuation">:</span>
   <span class="token key atrule">name</span><span class="token punctuation">:</span> podinfo
   <span class="token key atrule">namespace</span><span class="token punctuation">:</span> prod
 <span class="token key atrule">spec</span><span class="token punctuation">:</span>
-  <span class="token key atrule">canaryAnalysis</span><span class="token punctuation">:</span>
+  <span class="token key atrule">analysis</span><span class="token punctuation">:</span>
     <span class="token key atrule">webhooks</span><span class="token punctuation">:</span>
       <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> <span class="token string">&quot;helm test&quot;</span>
         <span class="token key atrule">type</span><span class="token punctuation">:</span> pre<span class="token punctuation">-</span>rollout
@@ -76,11 +76,11 @@ fluxctl <span class="token function">sync</span>
         <span class="token key atrule">timeout</span><span class="token punctuation">:</span> 2m
         <span class="token key atrule">metadata</span><span class="token punctuation">:</span>
           <span class="token key atrule">type</span><span class="token punctuation">:</span> <span class="token string">&quot;helmv3&quot;</span>
-          <span class="token key atrule">cmd</span><span class="token punctuation">:</span> <span class="token string">&quot;test run podinfo --cleanup&quot;</span>
+          <span class="token key atrule">cmd</span><span class="token punctuation">:</span> <span class="token string">&quot;test podinfo&quot;</span>
       <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> load<span class="token punctuation">-</span>test
         <span class="token key atrule">url</span><span class="token punctuation">:</span> http<span class="token punctuation">:</span>//load<span class="token punctuation">-</span>tester.prod/
         <span class="token key atrule">metadata</span><span class="token punctuation">:</span>
-          <span class="token key atrule">cmd</span><span class="token punctuation">:</span> <span class="token string">&quot;hey -z 2m -q 10 -c 2 http://podinfo:9898/&quot;</span>
+          <span class="token key atrule">cmd</span><span class="token punctuation">:</span> <span class="token string">&quot;hey -z 2m -q 10 -c 2 http://podinfo-canary.prod:9898/&quot;</span>
 </code></pre></div><p>Apply changes:</p> <div class="language-sh extra-class"><pre class="language-sh"><code><span class="token function">git</span> <span class="token function">add</span> -A <span class="token operator">&amp;&amp;</span> <span class="token punctuation">\</span>
 <span class="token function">git</span> commit -m <span class="token string">&quot;update podinfo&quot;</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">\</span>
 <span class="token function">git</span> push origin master <span class="token operator">&amp;&amp;</span> <span class="token punctuation">\</span>
@@ -91,6 +91,6 @@ If the helm test fails, Flagger will retry until the analysis threshold is reach
         <a href="/canary/" class="prev">
           Canary Releases
         </a></span> <!----></p></div> </main></div><div class="global-ui"></div></div>
-    <script src="/assets/js/app.246f1487.js" defer></script><script src="/assets/js/2.795534d9.js" defer></script><script src="/assets/js/10.559d761d.js" defer></script>
+    <script src="/assets/js/app.ff576fad.js" defer></script><script src="/assets/js/2.795534d9.js" defer></script><script src="/assets/js/10.b43f2962.js" defer></script>
   </body>
 </html>
