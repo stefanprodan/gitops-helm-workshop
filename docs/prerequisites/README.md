@@ -51,7 +51,7 @@ Cluster state directory structure:
 
 ## Flux
 
-Add FluxCD repository to Helm repos:
+Add Flux repository to Helm repos:
 
 ```sh
 helm repo add fluxcd https://charts.fluxcd.io
@@ -97,12 +97,6 @@ Go to `Settings > Deploy keys` click on `Add deploy key`, check `Allow write acc
 paste the Flux public key and click `Add key`.
 
 ## Helm Operator
-
-Install the HelmRelease CRD:
-
-```sh
-kubectl apply -f https://raw.githubusercontent.com/fluxcd/helm-operator/master/deploy/flux-helm-release-crd.yaml
-```
 
 Install Flux Helm Operator in the `fluxcd` namespace:
 

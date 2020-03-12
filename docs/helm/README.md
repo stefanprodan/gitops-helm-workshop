@@ -42,13 +42,11 @@ spec:
   chart:
     repository: https://kubernetes-charts.storage.googleapis.com/
     name: nginx-ingress
-    version: 1.25.0
+    version: 1.33.4
   values:
     controller:
       service:
         type: LoadBalancer
-      metrics:
-        enabled: false
 ```
 
 Apply changes:
@@ -109,7 +107,7 @@ spec:
   values:
     image:
       repository: stefanprodan/podinfo
-      tag: 3.0.0
+      tag: 3.1.0
     service:
       enabled: true
       type: ClusterIP
@@ -147,9 +145,7 @@ Validate that the Helm operator has installed podinfo:
 kubectl -n prod get hr
 ```
 
-Open your browser and navigate to `http://LB-PUBLIC-IP.nip.io/`, you should see podinfo v3.0.0 UI.
-
-![podinfo](/podinfo-3.0.0.png)
+Open your browser and navigate to `http://LB-PUBLIC-IP.nip.io/`, you should see podinfo v3.1.0 UI.
 
 ## Automated upgrade
 
@@ -166,7 +162,7 @@ kind: HelmRelease
 metadata:
   annotations:
     fluxcd.io/automated: "true"
-    fluxcd.io/tag.chart-image: semver:~3.0
+    fluxcd.io/tag.chart-image: semver:~3.1
 ```
 
 Apply changes:
@@ -190,9 +186,7 @@ Pull the changes made by Flux locally:
 git pull origin master
 ```
 
-Open your browser and navigate to `http://LB-PUBLIC-IP.nip.io/`, you should see podinfo v3.0.5 UI.
-
-![podinfo](/podinfo-3.0.5.png)
+Open your browser and navigate to `http://LB-PUBLIC-IP.nip.io/`, you should see podinfo v3.1.5 UI.
 
 ## Sealed secrets
 
@@ -216,7 +210,7 @@ spec:
   chart:
     repository: https://kubernetes-charts.storage.googleapis.com/
     name: sealed-secrets
-    version: 1.4.0
+    version: 1.8.0
 ```
 
 Apply changes:
@@ -231,7 +225,7 @@ fluxctl sync
 Install the kubeseal CLI:
 
 ```sh
-wget https://github.com/bitnami-labs/sealed-secrets/releases/download/v0.8.1/kubeseal-darwin-amd64
+wget https://github.com/bitnami-labs/sealed-secrets/releases/download/v1.8.0/kubeseal-darwin-amd64
 sudo install -m 755 kubeseal-darwin-amd64 /usr/local/bin/kubeseal
 ```
 
